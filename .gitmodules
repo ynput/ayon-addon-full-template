@@ -1,0 +1,3 @@
+[submodule "frontend/ayon-power-pack"]
+	path = frontend/ayon-power-pack
+	url = https://github.com/ynput/ayon-power-pack
