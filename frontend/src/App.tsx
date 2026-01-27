@@ -1,24 +1,51 @@
 // This is only used in development mode and not the exported addon bundle
 
-import { useState } from "react";
 import { Button, Toolbar } from "@ynput/ayon-react-components";
-type Widget = "studio" | "project" | "modal";
+import {
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import CommentsProjectDev from "./Dev/CommentsProjectDev";
 
 function App() {
-  const [widget, setWidget] = useState<Widget>("studio");
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const routes = [
+    // { name: "studio", path: "/studio", component: <CommentsStudioDev /> },
+    { name: "project", path: "/project", component: <CommentsProjectDev /> },
+    // { name: "modal", path: "/modal", component: <CommentsModalDev /> },
+  ];
 
   return (
-    <Toolbar>
-      {["studio", "project", "modal"].map((w) => (
-        <Button
-          key={w}
-          selected={widget === w}
-          onClick={() => setWidget(w as Widget)}
-        >
-          {w}
-        </Button>
-      ))}
-    </Toolbar>
+    <>
+      <Toolbar>
+        {routes.map((w) => (
+          <Button
+            key={w.name}
+            selected={pathname === w.path}
+            onClick={() => navigate(w.path)}
+          >
+            {w.name}
+          </Button>
+        ))}
+      </Toolbar>
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="/studio" replace />} />
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={route.component}
+            />
+          ))}
+        </Routes>
+      </main>
+    </>
   );
 }
 

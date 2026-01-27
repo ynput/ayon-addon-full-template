@@ -12,6 +12,11 @@ export default ({ mode }: { mode: string }) => {
   const SERVER_URL = process?.env?.SERVER_URL || "http://localhost:5000";
 
   return defineConfig({
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
     server: {
       proxy: {
         "/api": {

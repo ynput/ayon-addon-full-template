@@ -1016,10 +1016,10 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.18.0"
 
-"@ynput/ayon-frontend-shared@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@ynput/ayon-frontend-shared/-/ayon-frontend-shared-0.3.5.tgz#b78c8d99b8db96da9c458c7433c83b3c3cd210fb"
-  integrity sha512-kXuuL/4nanBfv58a1iOlEfPLtvt7CmHRG8h3rIH5FkgyUvoNRpuRJ6xotI2NIurlhwwtNTLYGbbRovcz1dOV8Q==
+"@ynput/ayon-frontend-shared@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@ynput/ayon-frontend-shared/-/ayon-frontend-shared-0.3.6.tgz#212d644b1f1050af4ea40369f1a497b96f33de9d"
+  integrity sha512-KOR9siuH8IlPmxKxl2CBOuIigmaxFt4LfsSWwj24QJGmcwp4xq6nGJloJZV5bwpLjnVzJtkac4i7sxvOujxRQw==
   dependencies:
     "@tanstack/match-sorter-utils" "^8.19.4"
     "@tanstack/react-virtual" "^3.13.4"
