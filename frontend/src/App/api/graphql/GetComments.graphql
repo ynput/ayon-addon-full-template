@@ -1,0 +1,18 @@
+query GetComments($projectName: String!, $folderIds: [String!]!) {
+  project(name: $projectName) {
+    name
+    activities(
+      entityIds: $folderIds
+      last: 1000
+      referenceTypes: ["origin", "relation"]
+      activityTypes: ["comment"]
+    ) {
+      edges {
+        cursor
+        node {
+          ...Comment
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "@ynput/ayon-frontend-shared/api";
 
 // inject more tags to the api
-const tagTypes = [] as const;
+const tagTypes = ["comment"] as const;
 
 const apiWithTags = api.enhanceEndpoints({ addTagTypes: tagTypes });
 export { apiWithTags as api };

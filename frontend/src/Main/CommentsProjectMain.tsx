@@ -1,14 +1,14 @@
 import { store } from "@/App/client/store";
+import ProjectComments from "@/App/components/ProjectComments";
 import {
   AddonProjectProvider,
   GlobalProvider,
   PowerpackProvider,
   RemoteAddonProjectProps,
 } from "@ynput/ayon-frontend-shared/context";
-import { FC } from "react";
 import { Provider } from "react-redux";
 
-const CommentsProjectMain: FC<RemoteAddonProjectProps> = (props) => {
+const CommentsProjectMain = (props: RemoteAddonProjectProps) => {
   return (
     // redux store to allow for addon to make api calls
     <Provider store={store}>
@@ -18,7 +18,7 @@ const CommentsProjectMain: FC<RemoteAddonProjectProps> = (props) => {
         <PowerpackProvider>
           {/* forwards project specific props for easy access across addon */}
           <AddonProjectProvider {...props}>
-            <div>HELLO</div>
+            <ProjectComments />
           </AddonProjectProvider>
         </PowerpackProvider>
       </GlobalProvider>

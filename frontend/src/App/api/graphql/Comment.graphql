@@ -1,0 +1,17 @@
+fragment Comment on ActivityNode {
+  activityId
+  activityType
+  activityData
+  entityId
+  body
+  createdAt
+  updatedAt
+  author {
+    name
+    active
+    attrib {
+      fullName
+      avatarUrl
+    }
+  }
+}
