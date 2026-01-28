@@ -15,7 +15,7 @@ const CommentsStudioMain = (props: RemotePageProps) => {
       <GlobalProvider>
         {/* required */}
         <PowerpackProvider>
-          <ProjectsComments />
+          <ProjectsComments toast={props.toast} />
         </PowerpackProvider>
       </GlobalProvider>
     </Provider>

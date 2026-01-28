@@ -34,7 +34,7 @@ export interface ActivityCommentItemAuthor {
   fullName?: string;
 }
 
-export interface ActivityCommentItemProps {
+export interface ActivityCommentItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /** Unique identifier for the comment */
   id?: string;
   /** Comment body text (supports markdown) */
@@ -49,8 +49,6 @@ export interface ActivityCommentItemProps {
   reactions?: ActivityCommentItemReaction[];
   /** Whether the comment is highlighted */
   isHighlighted?: boolean;
-  /** Custom class name */
-  className?: string;
   /** Project name for file URLs */
   projectName?: string;
 }
@@ -68,8 +66,8 @@ const ActivityCommentItem = ({
   files = [],
   reactions = [],
   isHighlighted,
-  className,
   projectName,
+  ...props
 }: ActivityCommentItemProps) => {
   const authorName = author?.name || "";
   const authorFullName = author?.fullName || authorName || "Unknown";
@@ -101,7 +99,10 @@ const ActivityCommentItem = ({
 
   return (
     <Styled.Comment
-      className={clsx("activity-comment-item", className, { isHighlighted })}
+      {...props}
+      className={clsx("activity-comment-item", props.className, {
+        isHighlighted,
+      })}
       id={id}
     >
       {/* Header */}

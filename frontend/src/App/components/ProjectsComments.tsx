@@ -8,7 +8,11 @@ import { useListProjectsQuery } from "@ynput/ayon-frontend-shared/api";
 import { useGetProjectFoldersQuery } from "../api/getFolders";
 import CommentsFeed from "./CommentsFeed";
 
-const ProjectsComments: FC = () => {
+interface ProjectsCommentsProps {
+  toast: any;
+}
+
+const ProjectsComments: FC<ProjectsCommentsProps> = ({ toast }) => {
   // use the pre-made query to get active projects
   const { data: projects = [], isLoading } = useListProjectsQuery({
     active: true,
@@ -49,7 +53,10 @@ const ProjectsComments: FC = () => {
       </div>
       {error && <div>Error loading folders.</div>}
       {!error && !!projectsFolders.length && (
-        <CommentsFeed projectArgs={projectsFolders} />
+        <CommentsFeed
+          projectArgs={projectsFolders}
+          onSelect={() => toast.info("A comment!")} // will only show up in ayon-frontend as toast system is not available in this app
+        />
       )}
     </SimpleTableProvider>
   );

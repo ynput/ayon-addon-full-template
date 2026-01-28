@@ -22,9 +22,10 @@ const StyledFeed = styled.ul`
 
 interface CommentsFeedProps {
   projectArgs: ProjectCommentsArgs[];
+  onSelect?: () => void;
 }
 
-const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs }) => {
+const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
   const {
     data: comments = [],
     error,
@@ -51,6 +52,7 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs }) => {
           body={comment.body || ""}
           date={comment.createdAt}
           projectName={comment.projectName}
+          onClick={() => onSelect?.()}
         />
       ))}
     </StyledFeed>

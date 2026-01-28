@@ -29,11 +29,7 @@ const foldersInjectedApi = api.injectEndpoints({
             ),
           );
 
-          console.log(promises);
-
           const results = await Promise.all(promises);
-
-          console.log(results);
 
           const data = results.map(
             (res: { data: FolderListModel }, index: number) => {
