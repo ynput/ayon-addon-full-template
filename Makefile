@@ -16,7 +16,7 @@ release: check
 
 	gh release create \
 		$(package_version) \
-		package/planner-$(package_version).zip \
+		package/ayon-addon-full-template-$(package_version).zip \
 		-t $(package_version) \
 		--generate-notes
 

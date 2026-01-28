@@ -6,9 +6,8 @@ class AddonFullTemplate(BaseServerAddon):
     settings_model = None
     addon_type = "server"
     frontend_modules = {
-        "template": [
+        "comments": [
             "CommentsProject",
             "CommentsStudio",
-            "CommentsModalApp",
         ],
     }

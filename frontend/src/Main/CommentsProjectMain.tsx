@@ -4,6 +4,7 @@ import {
   AddonProjectProvider,
   GlobalProvider,
   PowerpackProvider,
+  ProjectFoldersContextProvider,
   RemoteAddonProjectProps,
 } from "@ynput/ayon-frontend-shared/context";
 import { Provider } from "react-redux";
@@ -18,7 +19,11 @@ const CommentsProjectMain = (props: RemoteAddonProjectProps) => {
         <PowerpackProvider>
           {/* forwards project specific props for easy access across addon */}
           <AddonProjectProvider {...props}>
-            <ProjectComments />
+            <ProjectFoldersContextProvider
+              projectName={props.projectName as string}
+            >
+              <ProjectComments />
+            </ProjectFoldersContextProvider>
           </AddonProjectProvider>
         </PowerpackProvider>
       </GlobalProvider>

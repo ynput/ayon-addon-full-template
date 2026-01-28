@@ -42,11 +42,10 @@ export default ({ mode }: { mode: string }) => {
       react(),
       federation({
         filename: "remoteEntry.js",
-        name: "planner",
+        name: "comments",
         exposes: {
-          // "./CommentsProject": "./src/Scheduler/main/SchedulerRemote.tsx",
-          // "./CommentsStudio": "./src/Scheduler/main/SchedulerRemote.tsx",
-          // "./CommentsModalApp": "./src/Scheduler/main/SchedulerRemote.tsx",
+          "./CommentsProject": "./src/Remotes/CommentsProjectRemote.tsx",
+          "./CommentsStudio": "./src/Remotes/CommentsStudioRemote.tsx",
         },
         remotes: {},
         shared: {
@@ -71,7 +70,7 @@ export default ({ mode }: { mode: string }) => {
     ],
     build: {
       target: "chrome89",
-      outDir: path.resolve(__dirname, "./dist/modules/planner"),
+      outDir: path.resolve(__dirname, "./dist/modules/comments"),
       emptyOutDir: true,
       cssCodeSplit: false,
       minify: true,

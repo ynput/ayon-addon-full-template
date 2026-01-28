@@ -1,4 +1,3 @@
-import { FC } from "react";
 import styled from "styled-components";
 
 const Page = styled.div`
@@ -13,8 +12,8 @@ interface PageWrapperProps {
   children: React.ReactNode;
 }
 
-const PageWrapper: FC<PageWrapperProps> = ({ children }) => {
-  return <Page className="page-wrapper">{children}</Page>;
+const PageWrapper = ({ children }: PageWrapperProps) => {
+  return <Page className="page-wrapper">{children as any}</Page>;
 };
 
 export default PageWrapper;

@@ -22,7 +22,7 @@ export const WithViews: FC<WithViewsProps> = ({
       dispatch={dispatch}
     >
       <Views />
-      {children}
+      {children as any}
     </ViewsProvider>
   );
 };

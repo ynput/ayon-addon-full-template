@@ -48,7 +48,13 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({ toast }) => {
       rowSelection={selectedProjects}
       onRowSelectionChange={setSelectedProjects}
     >
-      <div style={{ width: 200 }}>
+      <div
+        style={{
+          width: 200,
+          height: "100%",
+          backgroundColor: "var(--md-sys-color-surface-container-low)",
+        }}
+      >
         <SimpleTable data={tableData} isLoading={isLoading} isMultiSelect />
       </div>
       {error && <div>Error loading folders.</div>}
