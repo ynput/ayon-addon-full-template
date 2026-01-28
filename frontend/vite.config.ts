@@ -46,6 +46,7 @@ export default ({ mode }: { mode: string }) => {
         exposes: {
           "./CommentsProject": "./src/Remotes/CommentsProjectRemote.tsx",
           "./CommentsStudio": "./src/Remotes/CommentsStudioRemote.tsx",
+          "./CommentsModalApp": "./src/Remotes/CommentsModalRemote.tsx",
         },
         remotes: {},
         shared: {

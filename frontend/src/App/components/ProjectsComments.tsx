@@ -7,12 +7,17 @@ import { RowSelectionState } from "@tanstack/react-table";
 import { useListProjectsQuery } from "@ynput/ayon-frontend-shared/api";
 import { useGetProjectFoldersQuery } from "../api/getFolders";
 import CommentsFeed from "./CommentsFeed";
+import { Comment } from "../api/getComments";
 
 interface ProjectsCommentsProps {
-  toast: any;
+  toast?: any;
+  onCommentSelect?: (comment: Comment) => void;
 }
 
-const ProjectsComments: FC<ProjectsCommentsProps> = ({ toast }) => {
+const ProjectsComments: FC<ProjectsCommentsProps> = ({
+  toast,
+  onCommentSelect,
+}) => {
   // use the pre-made query to get active projects
   const { data: projects = [], isLoading } = useListProjectsQuery({
     active: true,
@@ -55,13 +60,20 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({ toast }) => {
           backgroundColor: "var(--md-sys-color-surface-container-low)",
         }}
       >
-        <SimpleTable data={tableData} isLoading={isLoading} isMultiSelect />
+        <SimpleTable
+          data={tableData}
+          isLoading={isLoading}
+          isMultiSelect
+          enableClickToDeselect
+        />
       </div>
       {error && <div>Error loading folders.</div>}
       {!error && !!projectsFolders.length && (
         <CommentsFeed
           projectArgs={projectsFolders}
-          onSelect={() => toast.info("A comment!")} // will only show up in ayon-frontend as toast system is not available in this app
+          onSelect={(activityId) =>
+            onCommentSelect?.(activityId) || toast?.info("A comment!")
+          } // will only show up in ayon-frontend as toast system is not available in this app
         />
       )}
     </SimpleTableProvider>

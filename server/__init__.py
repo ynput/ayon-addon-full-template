@@ -9,5 +9,6 @@ class AddonFullTemplate(BaseServerAddon):
         "comments": [
             "CommentsProject",
             "CommentsStudio",
+            "CommentsModalApp",
         ],
     }

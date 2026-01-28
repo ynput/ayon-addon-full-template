@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import CommentsProjectDev from "./Dev/CommentsProjectDev";
 import CommentsStudioDev from "./Dev/CommentsStudioDev";
+import CommentsModalDev from "./Dev/CommentsModalDev";
 
 function App() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function App() {
   const routes = [
     { name: "studio", path: "/studio", component: <CommentsStudioDev /> },
     { name: "project", path: "/project", component: <CommentsProjectDev /> },
-    // { name: "modal", path: "/modal", component: <CommentsModalDev /> },
+    { name: "modal", path: "/modal", component: <CommentsModalDev /> },
   ];
 
   return (

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {
+  Comment,
   ProjectCommentsArgs,
   useGetCommentsForProjectsQuery,
 } from "../api/getComments";
@@ -22,7 +23,7 @@ const StyledFeed = styled.ul`
 
 interface CommentsFeedProps {
   projectArgs: ProjectCommentsArgs[];
-  onSelect?: () => void;
+  onSelect?: (comment: Comment) => void;
 }
 
 const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
@@ -40,6 +41,10 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
     return <div>Error loading comments.</div>;
   }
 
+  if (!comments.length) {
+    return <div>No comments found.</div>;
+  }
+
   return (
     <StyledFeed>
       {comments.map((comment) => (
@@ -52,7 +57,7 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
           body={comment.body || ""}
           date={comment.createdAt}
           projectName={comment.projectName}
-          onClick={() => onSelect?.()}
+          onClick={() => onSelect?.(comment)}
         />
       ))}
     </StyledFeed>
