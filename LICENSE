@@ -1,201 +1,243 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+AYON ADDON - LICENSE TERMS AND CONDITIONS
+Version 1, January 1, 2024.
 
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+You can also find a copy of this license at https://ynput.io/ayon-addons-license/
 
-   1. Definitions.
+1. Acceptance of the Terms
 
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
+1.1. Please read these terms and conditions and all other documents referred to herein (collectively the “Terms“) carefully
+before you start using the Addon. When you start using the Addon or confirm the order form (in writing or electronically by
+clicking “I agree” or similar button or checkbox), you as a client (the “Client”) conclude an Addon license agreement (the
+“Agreement”) with Ynput s.r.o., a company with a registered seat at Dělnická 503/47, Holešovice, 170 00 Prague 7, Czech
+Republic, Business ID No.: 09055207, registered in the Commercial Register kept by the Municipal Court in Prague, File No.
+C 329992 (“Ynput”). If the Client does not agree to the Terms, it must not use the Addon.
 
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
+1.2. The Client agrees that these Terms apply to every purchase of any Addon by the Client. Every single purchase constitutes an
+individual Agreement between the Client and Ynput which includes the Terms.
 
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
+1.3. To avoid any misunderstandings, Ynput's SaaS service ynput.cloud is provided on its own terms of service entirely
+independent of the desktop application, the Addon and these Terms.
 
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
+2. License Details
 
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
+2.1. License Details. License details may differ for each individual Addon. The Client may find specific license details in a
+description of Addon before purchasing it. License details may include restrictions on use such as number of seats, devices,
+Authorized Users etc. and license term, license fees per and other details. By purchasing the specific Addon the Client
+agrees with such details.
 
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
+3. License Terms
 
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
+3.1. License Grant. Subject to and conditioned on Client's payment of all fees and compliance with all the terms and conditions
+of the Agreement, Ynput grants Client a non-exclusive, non-sublicensable, non-transferable license to use Addon during the
+license term solely for Client’s internal business purposes.
 
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
+3.2. Restrictions. Client shall not use Addon for any purposes beyond the scope of the license granted. Without limiting the
+foregoing and except as otherwise expressly set forth in this Agreement, Client shall not at any time, directly or indirectly:
+a) copy, modify, or create derivative works of the Addon, in whole or in part;
+b) rent, lease, lend, sell, sublicense, assign, distribute, publish, transfer, or otherwise make available the Addon;
+c) reverse engineer, disassemble, decompile, decode, adapt, or otherwise attempt to derive or gain access to the
+source code of the Addon, in whole or in part;
+d) use any hardware or software means that associate more devices to circumvent the quantitative restriction of the
+license (prohibition of multiplexing);
+e) remove any proprietary notices from the Addon; or
+f) use Addon in any manner or for any purpose that infringes, misappropriates, or otherwise violates any intellectual
+property right or other right of any person, or that violates any applicable law.
 
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
+3.3. Reservation of Rights. Ynput reserves all rights not expressly granted to Client in the Agreement. Except for the limited
+rights and licenses expressly granted under the Agreement, nothing in this Agreement grants, by implication, waiver,
+estoppel, or otherwise, to Client or any third party any intellectual property rights or other right, title, or interest in or to the
+Addon. Client acknowledges that, as between Client and Ynput, Ynput owns all right, title, and interest, including all
+intellectual property rights, in and to the Addon.
 
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
+3.4. Third-Party Products. Ynput may distribute third-party products provided with or incorporated into the Addon including any
+open-source software. Such third-party products are subject to their own license terms. If Client does not agree to abide by
+the applicable terms, then Client should not install or use such third-party products. With respect to any third-party
+products, the applicable third-party licensors own all right, title, and interest, including all intellectual property rights, in and
+to the third-party products.
 
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
+4. Responsibilities
 
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
+4.1. Delivery. Ynput shall deliver Addon by making it available for download by the Client from ynput.cloud. Client shall install
+the Addon in accordance with the user manual relating to the Addon available at ayon.ynput.io (the “Documentation”), or
+in accordance with the instructions provided by Ynput support staff..
 
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
+4.2. General. Client is responsible and liable for all use of the Addon resulting from access provided by Client, directly or
+indirectly, whether such access or use is permitted by or in violation of this Agreement. Without limiting the generality of
+the foregoing, Client is responsible for all acts and omissions of its officers, directors, or employees of Client who Client
+permits to access and use the Addon pursuant to Client's license hereunder (the “Authorized Users”), and any act or
+omission by an Authorized User that would constitute a breach of this Agreement if taken by Client will be deemed a breach
+of this Agreement by Client. Client shall take reasonable efforts to make all Authorized Users aware of this Agreement's
+provisions as applicable to such Authorized User's use of the Addon and shall cause Authorized Users to comply with such
+provisions.
 
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
+4.3. Service Agreement. Ynput shall not provide any support or maintenance to the Addon unless the parties conclude a Service
+Agreement for its provision.
 
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
+4.4. Remote Deactivation. In the event of a substantial breach of the license terms by the Client and upon a prior notification in
+writing requesting the remedy of such breach, Ynput may perform the remote deactivation of the Addon until the Client
+remedies the notified breach.
 
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
+5. Fees and Payment
 
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
+5.1. Fees. License details may set forth the conditions on how license fees are applied for designated number of Authorized
+Users / seats / other restrictions per relevant license term of the Addon. In the event that Client does not use Addon, this
+shall not affect Ynput’s right to payment of the fees in full. Unless expressly set forth herein, the license fees are
+non-cancelable and non-refundable.
 
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
+5.2. Payment. You shall make all payments via Stripe payment gateway. You hereby agree to the terms and conditions of Stripe
+services available at https://stripe.com. Payment instructions will be displayed to you immediately after the order is
+submitted or provided by Ynput’s support staff upon request. We will issue and send the invoice to You at the same time as
+the order confirmation. In case of subscription term renewal and payment for excessive use, the fees will be charged
+automatically to the payment method you last selected. If you’re ordering for a period of 12 months or longer (as detailed
+in the price list) you may request an invoice during the order instead of paying via Stripe. In that case invoice will be due 14
+days from issuance and We will send it electronically to your contact email address. You shall pay the price by bank transfer
+to Our account identified on the invoice, using any payment identifiers specified (e.g. variable symbol). In case of
+subscription term renewal we will send you next invoice usually no later than of the first business day of the new
+subscription term.
 
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
+5.3. Taxes. Fees are specified exclusive of VAT. Client undertakes to pay the amount including VAT charged in accordance with
+the relevant legislation. Fees are also exclusive of all sales, use, and excise taxes, and any other similar taxes, duties, and
+charges of any kind imposed by any federal, state, or local governmental or regulatory authority on any amounts payable by
+Client hereunder, other than any taxes imposed on Ynput's income. Client is solely obliged to bear all such surcharges so
+that the Ynput always receives the net amount charged. If Client is obliged to pay any amounts, Ynput is entitled to add
+them to the invoiced fees and to increase the payment to the Ynput.
 
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
+5.4. Late Payment. If Client fails to make any payment when due then, in addition to all other remedies that may be available:
+a) Ynput may charge contractual penalty on the past due amount at the rate of 0,5 % per each commenced day of
+delay or, if lower, the highest rate permitted under applicable law; and
+b) If such failure continues for 10 days following written notice thereof, Ynput may prohibit use of the Addon and
+invalidate provided license until all past due amounts and penalties have been paid, without incurring any obligation
+or liability to Client or any other person.
 
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
+6. Limited Warranties and Warranty Disclaimer
 
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
+6.1. Limited Warranty. Ynput warrants that during the license term, the Addon will perform materially as described in the
+Documentation and that the use of the Addon in accordance with the Agreement will not infringe third party copyright. THE
+FOREGOING WARRANTIES DO NOT APPLY, AND YNPUT STRICTLY DISCLAIMS ALL WARRANTIES, WITH RESPECT TO ANY
+THIRD-PARTY PRODUCTS.
 
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
+6.2. Breach. The limited warranty does not apply and become null and void if Client breaches any provision of this Agreement,
+or if Client, any Authorized User, or any person provided access to the Addon by Client whether or not in violation of this
+Agreement installs or uses the Addon on or in connection with any hardware or Addon not specified in the Documentation,
+modifies the Addon; or uses any other version of the Addon than the latest version provided by Ynput.
 
-   END OF TERMS AND CONDITIONS
+6.3. Remedies. If, during the license term the Addon fail to comply with the warranty and such failure is not excluded from
+warranty („Defect“), then Ynput shall, subject to Client's promptly notifying Ynput in writing of such failure, at its sole
+option, either:
+a) repair or replace Addon by provision of maintenance update or upgrade, provided that Client provides Ynput with
+all information Ynput requests to resolve the reported failure, including sufficient information to enable the Ynput to
+recreate such failure; or
+b) terminate the Agreement and refund pro-rata portion of the fees paid in advance for use of Addon during the
+unused part of the license term (in case of permanent licenses, the Client shall be refunded the fees only if the
+Agreement is terminated prior to 6 months after its conclusion), subject to Client's ceasing all use of and erasing all
+copies of Addon.
 
-   APPENDIX: How to apply the Apache License to your work.
+6.4. Sole Remedy, Disclaimer. The remedies set forth in the Section 6.3 are Client's sole remedies and Ynput' sole liability under
+the limited warranty. EXCEPT FOR THE LIMITED WARRANTY SET FORTH IN SECTION 6.1, ADDON IS PROVIDED "AS IS" AND
+YNPUT HEREBY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. YNPUT
+SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE,
+AND NON-INFRINGEMENT, AND ALL WARRANTIES ARISING FROM COURSE OF DEALING, USAGE, OR TRADE PRACTICE.
+YNPUT MAKES NO WARRANTY OF ANY KIND THAT THE ADDON, OR ANY PRODUCTS OR RESULTS OF THE USE THEREOF, WILL
+MEET CLIENT'S OR ANY OTHER PERSON'S REQUIREMENTS, OPERATE WITHOUT INTERRUPTION, ACHIEVE ANY INTENDED
+RESULT, BE COMPATIBLE OR WORK WITH ANY ADDON, SYSTEM OR OTHER SERVICES, OR BE SECURE, ACCURATE, COMPLETE,
+FREE OF HARMFUL CODE, OR ERROR FREE.
 
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
+7. Indemnification and limitation of liability
 
-   Copyright [yyyy] [name of copyright owner]
+7.1. Client Indemnification. Client shall indemnify, hold harmless, and, at Ynput's option, defend Ynput from and against any and
+all damages, and costs resulting from any third-party claim based on Client's, or any Authorized User's: (i) negligence or
+willful misconduct; or (ii) use of Addon ‘in a manner not authorized by this Agreement; (iii) use of the Addon in combination
+with data, software, or hardware not provided by Ynput; (iv) modifications to the Addon not made by Ynput; or (v) use of
+any version other than the most current version of the Addon delivered to Client, provided that Client may not settle any
+third-party claim against Ynput without Ynput’s prior consent.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+7.2. Limitations of Liability. IN NO EVENT WILL EITHER PARTY BE LIABLE UNDER OR IN CONNECTION WITH THESE TERMS
+AND/OR ANY AGREEMENT UNDER ANY LEGAL OR EQUITABLE THEORY, INCLUDING BREACH OF CONTRACT, TORT
+(INCLUDING NEGLIGENCE), STRICT LIABILITY, AND OTHERWISE, FOR ANY: (a) CONSEQUENTIAL, INCIDENTAL, INDIRECT,
+EXEMPLARY, SPECIAL, ENHANCED, OR PUNITIVE DAMAGES; (b) INCREASED COSTS, DIMINUTION IN VALUE OR LOST
+BUSINESS, PRODUCTION, REVENUES, OR PROFITS; (c) LOSS OF GOODWILL OR REPUTATION; (d) USE, INABILITY TO USE,
+LOSS, INTERRUPTION, DELAY OR RECOVERY OF ANY DATA, OR BREACH OF DATA OR SYSTEM SECURITY; OR (e) COST OF
+REPLACEMENT GOODS OR SERVICES, IN EACH CASE REGARDLESS OF WHETHER PARTY WAS ADVISED OF THE POSSIBILITY OF
+SUCH LOSSES OR DAMAGES OR SUCH LOSSES OR DAMAGES WERE OTHERWISE FORESEEABLE. IN NO EVENT WILL EITHER
+PARTY’S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS AND/OR ANY AGREEMENT UNDER ANY
+LEGAL OR EQUITABLE THEORY, INCLUDING BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, AND
+OTHERWISE EXCEED 50 % OF THE FEES PAID TO YNPUT UNDER SPECIFIC AGREEMENT IN THE 3 MONTH PERIOD PRECEDING
+THE EVENT GIVING RISE TO THE CLAIM OR $ 1000, WHICHEVER IS LESS.
 
-       http://www.apache.org/licenses/LICENSE-2.0
+8. Term, Termination
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+8.1. License Term. Initial license term commences on the date of each Agreement. License term will automatically renew for
+additional successive license terms of the same length as the previous one unless earlier terminated pursuant to the
+Agreement’s express provisions or either party gives the other party written notice of non-renewal at least 1 day before the
+expiry of then-current license term. Each renewal term is subject to payment of relevant license fees.
+
+8.2. Termination. In addition to any other express termination right of any Agreement set forth in these Terms:
+a) Ynput may terminate specific Agreement, effective on written notice to Client, if Client fails to pay any amount when
+due hereunder, and such failure continues more than 10 days after Ynput’ delivery of written notice thereof; or
+breaches any restriction under the Agreement;
+b) either Party may terminate specific Agreement, effective on written notice to the other Party, if the other Party
+materially breaches the Agreement, and such breach is incapable of cure; or being capable of cure, remains uncured
+30 days after the non-breaching Party provides the breaching Party with written notice of such breach; or
+c) either Party may terminate specific Agreement, effective immediately upon written notice to the other Party, if the
+other Party: (i) becomes insolvent or is generally unable to pay, or fails to pay, its debts as they become due; (ii) files
+or has filed against it, a petition for voluntary or involuntary bankruptcy or otherwise becomes subject, voluntarily
+or involuntarily, to any proceeding under any domestic or foreign bankruptcy or insolvency law; (iii) makes or seeks
+to make a general assignment for the benefit of its creditors; or (iv) applies for or has appointed a receiver, trustee,
+custodian, or similar agent appointed by Agreement of any court of competent jurisdiction to take charge of or sell
+any material portion of its property or business.
+
+8.3. Effect. Upon expiration or earlier termination of specific Agreement, the license granted hereunder will also terminate, and,
+without limiting Client's obligations agreed herein, Client shall cease using and delete, destroy, or return all copies of the
+respective Addon and certify in writing to Ynput that Addon have been deleted or destroyed. If Ynput terminates the
+specific Agreement pursuant to Section 6.3 or Client terminates the Agreement pursuant to Section 8.2 (b), Client will be
+relieved of obligation to pay the fees attributable to the period after the effective date of such termination (in case of
+permanent licenses, the Client shall be refunded the fees only if the Agreement is terminated prior to 6 months after its
+conclusion), in all other cases all fees that would have become payable had the Agreement remained in effect until
+expiration of the current license term will become immediately due and payable, and you shall pay such fees, together with
+all previously accrued but not yet paid fees
+
+8.4. Auditing Rights. Ynput may at its own expense, on reasonable prior notice and in accordance with agreed confidentiality
+obligations, inspect and audit Client's records and systems with respect to Client’s use of Addon, provided that if such audit
+reveals that Client has used Addon in excess of the agreed restrictions or after the termination of the Agreement, Client
+shall pay Ynput double the fees that Ynput would have received for such use of Addon, if such use was in accordance with
+the specific Agreement, together with interest and costs of the audit. Such inspection and auditing rights will extend
+throughout the Term of the Agreement and continue for a period of two years after the termination or expiration of the
+Agreement.
+
+9. Final provisions
+
+9.1. Entire Agreement. Agreement, together with any other documents incorporated herein by reference (especially these
+Terms), constitutes the sole and entire Agreement of the parties with respect to the specific subject matter of the
+Agreement (mainly a specific Addon) and supersedes all prior and contemporaneous Agreements with respect to such
+subject matter.
+
+9.2. Assignment. Neither party may assign or otherwise transfer any of its rights without the other party's prior written consent
+provided that Ynput may assign any Agreement as a whole without Client‘s prior written consent to its affiliate.
+9.3. Publicity. Ynput is authorized to use Client’s name or mark and identify Client as a client of Ynput website and/or in its
+marketing materials.
+
+9.4. Force Majeure. In no event will either party be liable for any failure or delay in performance of any Agreement (except for
+obligations to make payments) to the extent such failure or delay is caused by any circumstances beyond its reasonable
+control, including acts of God, flood, fire, earthquake, war, terrorism, cyber-attack (including DDoS), invasion, embargoes,
+strikes, passage of law, including imposing an embargo, export or import restriction, quota, or other restriction or
+prohibition or any complete or partial government shutdown, or national or regional shortage of adequate power or
+telecommunications or transportation. Ynput may terminate any Agreement if force majeure event continues for 30 days or
+more.
+
+9.5. Amendment. Ynput may revise and update these Terms from time to time in its sole discretion. All changes are effective on
+the indicated date and apply to all access to and use of the Addon thereafter. Client's continued use of the Addon following
+the term of effectiveness of the changes means that the Client accepts and agrees to the changes. Client is expected to
+check the Terms from time to time so that the Client is aware of any changes, as they are binding.
+
+9.6. Severability. If any term or provision of a specific Agreement (and as its part of these Terms) is invalid, illegal, or
+unenforceable in any jurisdiction, such invalidity, illegality, or unenforceability shall not affect any other term or provision.
+Upon such determination that any term or other provision is invalid, illegal, or unenforceable, we shall negotiate in good
+faith to modify the Agreement so as to effect the original intent to the greatest extent possible.
+
+9.7. Governing Law; Submission to Jurisdiction. These Terms and specific Agreements are governed by and construed in
+accordance with the internal laws of the Czech Republic without giving effect to any choice or conflict of law provision. Any
+legal suit, action, or proceeding arising out of or related to these Terms and/or specific Agreement will be instituted
+exclusively in the courts of the Czech Republic, and each of us irrevocably submits to the exclusive jurisdiction of such courts
+in any such suit, action, or proceeding.
+
+9.8. Effective date. These Terms are effective as of January 1, 2024.
