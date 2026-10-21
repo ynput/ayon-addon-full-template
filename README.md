@@ -85,6 +85,23 @@ The dev server has no AYON around it. There [frontend/src/main.tsx](frontend/src
 
 Your addon uses the shared library version that the AYON server it runs on ships. If you use something new from `@ynput/ayon-frontend-shared`, raise your addon's minimum AYON version too.
 
+### Testing with a local ayon-frontend
+
+To build the addon against unreleased changes to `@ynput/ayon-frontend-shared`, build shared in your ayon-frontend checkout and copy it into the addon:
+
+```bash
+# in ayon-frontend
+yarn build:shared
+
+# in frontend/
+yarn copy-shared ../../ayon-frontend
+yarn build
+```
+
+Run `yarn copy-shared` again after every shared build. `yarn install --force` goes back to the published package.
+
+**Don't use `yarn link` for this.** The addon builds, but it crashes inside AYON with errors like `TypeError: N is not a function`. The module federation vite plugin resolves shared packages to their real path, and a linked package's real path is outside `node_modules`. The plugin then treats it as a local workspace package: it bundles the package's own code into the chunk that loads AYON's copy, so that code runs when the chunk loads, before AYON's `react/jsx-runtime` is wired in. A copy in `node_modules` builds like the published package. [frontend/scripts/copyShared.js](frontend/scripts/copyShared.js) does the copy.
+
 ### Custom GraphQL
 
 While the shared library covers standard REST endpoints, this template also shows how to add **custom GraphQL queries** for specialized data requirements (see [frontend/src/App/api/getComments.ts](frontend/src/App/api/getComments.ts)). We use `graphql-codegen` to automatically generate TypeScript types and RTK Query hooks for your queries.
