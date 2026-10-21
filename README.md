@@ -70,6 +70,21 @@ We use `@ynput/ayon-frontend-shared` to speed up development. This library expor
 
 **Crucial**: You should rarely need to write your own fetch requests with URLs. Most AYON functionality (projects, folders, tasks, etc.) is already exposed through the shared library. This ensures consistent credentials, error handling, and caching across the whole app.
 
+### Using the AYON store
+
+Inside AYON your addon has no store of its own. AYON provides `@ynput/ayon-frontend-shared`, `@reduxjs/toolkit` and `react-redux` to the addon through module federation. They are listed under `shared` in [frontend/vite.config.ts](frontend/vite.config.ts). So the addon uses AYON's own instances:
+
+- **One cache.** Queries from `@ynput/ayon-frontend-shared/api` read and write AYON's cache. A query AYON has already run is not requested again. When AYON invalidates a tag, your queries that provide it refetch, and the same works the other way. The comments query provides AYON's `activity` tag, so the feed updates when someone comments in the details panel.
+- **Your endpoints.** `api.injectEndpoints(...)` and `api.enhanceEndpoints({ addTagTypes })` add to AYON's api. Every addon shares that api, so **prefix endpoint names with your addon name**. An endpoint whose name is already taken is skipped, and your hook then calls the existing endpoint instead (see [frontend/src/App/api/getFolders.ts](frontend/src/App/api/getFolders.ts)).
+- **Your state.** Inject slices into AYON's root reducer with `slice.injectInto(rootReducer)`, and add middleware with `addMiddleware`. Both come from `@ynput/ayon-frontend-shared/api`. The state lives in AYON's store, so it survives your page unmounting. See [frontend/src/App/client/store.ts](frontend/src/App/client/store.ts) and [commentsSlice.ts](frontend/src/App/client/commentsSlice.ts). Prefix slice names with your addon name too.
+- **No providers.** AYON renders your modules inside its Redux `Provider`, `GlobalProvider` and `PowerpackProvider`. Project modules also get the project providers (`ProjectContext`, `ProjectFoldersContext`, the slicer and views). Hooks like `useGlobalContext()` and `useProjectFoldersContext()` work without wrapping them again. Only add a provider AYON doesn't render, like `AddonProjectProvider`.
+
+Share **every** entry of `@ynput/ayon-frontend-shared`. An entry you leave out is bundled into your addon with its own copy of the api and contexts. The vite config reads the entries from the installed package, so this happens automatically.
+
+The dev server has no AYON around it. There [frontend/src/main.tsx](frontend/src/main.tsx) creates a store with `createStandaloneStore()` ([frontend/src/Dev/devStore.ts](frontend/src/Dev/devStore.ts)), and the `src/Dev` pages add the providers AYON would give the modules.
+
+Your addon uses the shared library version that the AYON server it runs on ships. If you use something new from `@ynput/ayon-frontend-shared`, raise your addon's minimum AYON version too.
+
 ### Custom GraphQL
 
 While the shared library covers standard REST endpoints, this template also shows how to add **custom GraphQL queries** for specialized data requirements (see [frontend/src/App/api/getComments.ts](frontend/src/App/api/getComments.ts)). We use `graphql-codegen` to automatically generate TypeScript types and RTK Query hooks for your queries.

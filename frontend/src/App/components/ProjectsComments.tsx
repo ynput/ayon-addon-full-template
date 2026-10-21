@@ -5,7 +5,7 @@ import SimpleTable, {
 import { FC, useMemo, useState } from "react";
 import { RowSelectionState } from "@tanstack/react-table";
 import { useListProjectsQuery } from "@ynput/ayon-frontend-shared/api";
-import { useGetProjectFoldersQuery } from "../api/getFolders";
+import { useGetCommentsProjectFoldersQuery } from "../api/getFolders";
 import CommentsFeed from "./CommentsFeed";
 import { Comment } from "../api/getComments";
 
@@ -43,7 +43,7 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({
       .map(([projectName]) => projectName);
   }, [selectedProjects]);
 
-  const { data: projectsFolders = [], error } = useGetProjectFoldersQuery(
+  const { data: projectsFolders = [], error } = useGetCommentsProjectFoldersQuery(
     selectedProjectNames,
     { skip: !selectedProjectNames.length },
   );

@@ -1,11 +1,10 @@
 // file mimics ayon-frontend structure for development purposes only
+// (the store and app level providers come from main.tsx, these are the project page ones)
 
 import { useAppDispatch } from "@/App/client/hooks";
 import commentsProjectRemote from "@/Remotes/CommentsProjectRemote";
 import { ProjectPageRemote } from "@ynput/ayon-frontend-shared/components";
 import {
-  GlobalProvider,
-  PowerpackProvider,
   ProjectContextProvider,
   ProjectFoldersContextProvider,
 } from "@ynput/ayon-frontend-shared/context";
@@ -22,30 +21,26 @@ const CommentsProjectDev: FC = () => {
   const viewType = commentsProjectRemote.viewType;
 
   return (
-    <GlobalProvider>
-      <PowerpackProvider>
-        <SlicerProvider>
-          <ProjectContextProvider projectName={projectName}>
-            <ProjectFoldersContextProvider projectName={projectName}>
-              <ViewsProvider
-                viewType={viewType}
+    <SlicerProvider>
+      <ProjectContextProvider projectName={projectName}>
+        <ProjectFoldersContextProvider projectName={projectName}>
+          <ViewsProvider
+            viewType={viewType}
+            projectName={projectName}
+            dispatch={dispatch}
+          >
+            <Views />
+            <PageWrapper>
+              <ProjectPageRemote
+                Component={commentsProjectRemote.component}
+                slicer={commentsProjectRemote.slicer}
                 projectName={projectName}
-                dispatch={dispatch}
-              >
-                <Views />
-                <PageWrapper>
-                  <ProjectPageRemote
-                    Component={commentsProjectRemote.component}
-                    slicer={commentsProjectRemote.slicer}
-                    projectName={projectName}
-                  />
-                </PageWrapper>
-              </ViewsProvider>
-            </ProjectFoldersContextProvider>
-          </ProjectContextProvider>
-        </SlicerProvider>
-      </PowerpackProvider>
-    </GlobalProvider>
+              />
+            </PageWrapper>
+          </ViewsProvider>
+        </ProjectFoldersContextProvider>
+      </ProjectContextProvider>
+    </SlicerProvider>
   );
 };
 

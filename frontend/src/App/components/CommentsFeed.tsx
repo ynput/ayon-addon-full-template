@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
+import { Button } from "@ynput/ayon-react-components";
 import {
   Comment,
   ProjectCommentsArgs,
@@ -6,6 +7,9 @@ import {
 } from "../api/getComments";
 import styled from "styled-components";
 import { ActivityCommentItem } from "./ActivityCommentItem";
+import { useAppDispatch, useAppSelector } from "../client/hooks";
+import { selectSortOrder } from "../client/store";
+import { setSortOrder } from "../client/commentsSlice";
 
 const StyledFeed = styled.ul`
   list-style: none;
@@ -33,6 +37,16 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
     isFetching,
   } = useGetCommentsForProjectsQuery(projectArgs);
 
+  // addon state from the AYON store, kept when the page is closed and opened again
+  const dispatch = useAppDispatch();
+  const sortOrder = useAppSelector(selectSortOrder);
+  const sortedComments = useMemo(() => {
+    const sorted = [...comments].sort((a, b) =>
+      a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0,
+    );
+    return sortOrder === "newest" ? sorted.reverse() : sorted;
+  }, [comments, sortOrder]);
+
   if (isFetching) {
     return <div>Loading comments...</div>;
   }
@@ -47,7 +61,20 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
 
   return (
     <StyledFeed>
-      {comments.map((comment) => (
+      <li>
+        <Button
+          icon={sortOrder === "newest" ? "arrow_downward" : "arrow_upward"}
+          variant="text"
+          onClick={() =>
+            dispatch(
+              setSortOrder(sortOrder === "newest" ? "oldest" : "newest"),
+            )
+          }
+        >
+          {sortOrder === "newest" ? "Newest first" : "Oldest first"}
+        </Button>
+      </li>
+      {sortedComments.map((comment) => (
         <ActivityCommentItem
           key={comment.activityId}
           author={{

@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+# module federation build cache
+.mf
 
 # Editor directories and files
 .vscode/*
