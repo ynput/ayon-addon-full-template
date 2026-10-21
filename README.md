@@ -72,7 +72,7 @@ We use `@ynput/ayon-frontend-shared` to speed up development. This library expor
 
 ### Using the AYON store
 
-Inside AYON your addon has no store of its own. AYON provides `@ynput/ayon-frontend-shared`, `@reduxjs/toolkit` and `react-redux` to the addon through module federation. They are listed under `shared` in [frontend/vite.config.ts](frontend/vite.config.ts). So the addon uses AYON's own instances:
+This needs AYON server 1.17.0 or newer, which is set in [package.py](package.py). Older servers don't share these packages, and the addon fails there without the providers. Inside AYON your addon has no store of its own. AYON provides `@ynput/ayon-frontend-shared`, `@reduxjs/toolkit` and `react-redux` to the addon through module federation. They are listed under `shared` in [frontend/vite.config.ts](frontend/vite.config.ts). So the addon uses AYON's own instances:
 
 - **One cache.** Queries from `@ynput/ayon-frontend-shared/api` read and write AYON's cache. A query AYON has already run is not requested again. When AYON invalidates a tag, your queries that provide it refetch, and the same works the other way. The comments query provides AYON's `activity` tag, so the feed updates when someone comments in the details panel.
 - **Your endpoints.** `api.injectEndpoints(...)` and `api.enhanceEndpoints({ addTagTypes })` add to AYON's api. Every addon shares that api, so **prefix endpoint names with your addon name**. An endpoint whose name is already taken is skipped, and your hook then calls the existing endpoint instead (see [frontend/src/App/api/getFolders.ts](frontend/src/App/api/getFolders.ts)).
