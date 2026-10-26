@@ -1,7 +1,12 @@
 // What this addon contributes to AYON's slots. AYON loads this module at startup (it is exposed
 // as ./manifest and listed in frontend_modules), so keep it to descriptions: every component is
 // a dynamic import that AYON loads when its slot needs it.
-import { defineAddon, projectPage, studioPage } from "@ynput/ayon-addon/manifest";
+import {
+  defineAddon,
+  headerItem,
+  projectPage,
+  studioPage,
+} from "@ynput/ayon-addon/manifest";
 
 export default defineAddon({
   contributes: [
@@ -18,6 +23,14 @@ export default defineAddon({
       title: "Comments",
       access: "manager",
       component: () => import("./pages/CommentsStudioPage"),
+    }),
+    // a header button next to Home, opening a dialog with the comments of picked projects
+    headerItem({
+      id: "comments",
+      label: "Comments",
+      icon: "chat",
+      placement: "left",
+      component: () => import("./header/CommentsDialog"),
     }),
   ],
 });

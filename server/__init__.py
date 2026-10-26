@@ -7,7 +7,6 @@ class AddonFullTemplate(BaseServerAddon):
     addon_type = "server"
     frontend_modules = {
         "comments": [
-            "CommentsModalApp",
             # contributions to slots (frontend/src/manifest.ts)
             "manifest",
         ],
