@@ -9,6 +9,7 @@ import {
   headerItem,
   projectListMenuItem,
   projectPage,
+  projectTableToolbarItem,
   slicerMenuItem,
   studioPage,
   tableColumn,
@@ -79,6 +80,14 @@ export default defineAddon({
       sliceTypes: ["hierarchy"],
       in: ["context", "dropdown"],
       run: () => import("./menu/copyFolderCommentLinks"),
+    }),
+    // a button in the Overview, Products and Lists toolbars, before Customize
+    projectTableToolbarItem({
+      id: "comments",
+      icon: "chat",
+      label: "Comments",
+      tooltip: "Comments in this project",
+      component: () => import("./toolbar/CommentsToolbarDialog"),
     }),
     // number of comments, in the Overview, Products and Lists tables
     tableColumn({
