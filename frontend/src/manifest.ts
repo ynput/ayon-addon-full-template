@@ -3,6 +3,7 @@
 // a dynamic import that AYON loads when its slot needs it.
 import {
   defineAddon,
+  detailsPanelMenuItem,
   detailsPanelTab,
   headerItem,
   projectPage,
@@ -40,6 +41,14 @@ export default defineAddon({
       icon: "chat",
       entityTypes: ["folder", "task", "version"],
       component: () => import("./panel/CommentsTab"),
+    }),
+    // "Copy comment link" in the details panel's more menu
+    detailsPanelMenuItem({
+      id: "copy_comment_link",
+      label: "Copy comment link",
+      icon: "add_link",
+      entityTypes: ["folder", "task", "version"],
+      run: () => import("./menu/copyCommentLink"),
     }),
   ],
 });
