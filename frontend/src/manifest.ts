@@ -7,6 +7,7 @@ import {
   detailsPanelTab,
   entityMenuItem,
   headerItem,
+  projectListMenuItem,
   projectPage,
   studioPage,
   tableColumn,
@@ -60,6 +61,14 @@ export default defineAddon({
       entityTypes: ["folder", "task", "version"],
       selection: "single",
       run: () => import("./menu/copyCommentLink"),
+    }),
+    // in the project list's right-click menu and its "more" dropdown
+    projectListMenuItem({
+      id: "copy_comments_page_link",
+      label: "Copy comments page link",
+      icon: "add_link",
+      in: ["context", "dropdown"],
+      run: () => import("./menu/copyProjectCommentsLink"),
     }),
     // number of comments, in the Overview, Products and Lists tables
     tableColumn({
