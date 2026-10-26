@@ -31,6 +31,15 @@ const ayonShared = Object.fromEntries(
     ]),
 );
 
+// @ynput/ayon-addon is always AYON's own copy: import: false bundles no copy into the addon, so
+// it can't end up with a second registry (or a stale, linked one).
+const addonApiVersion = JSON.parse(
+  readFileSync(
+    path.resolve(__dirname, "node_modules/@ynput/ayon-addon/package.json"),
+    "utf8",
+  ),
+).version;
+
 export default ({ mode, command }: { mode: string; command: string }) => {
   Object.assign(process?.env, loadEnv(mode, process?.cwd(), ""));
 
@@ -74,6 +83,8 @@ export default ({ mode, command }: { mode: string; command: string }) => {
           "./CommentsProject": "./src/Remotes/CommentsProjectRemote.tsx",
           "./CommentsStudio": "./src/Remotes/CommentsStudioRemote.tsx",
           "./CommentsModalApp": "./src/Remotes/CommentsModalRemote.tsx",
+          // contributions to AYON's slots, see src/manifest.ts
+          "./manifest": "./src/manifest.ts",
         },
         remotes: {},
         // use what AYON already loaded (its store, api and contexts), even when this addon was
@@ -107,6 +118,11 @@ export default ({ mode, command }: { mode: string; command: string }) => {
             singleton: true,
           },
           ...ayonShared,
+          "@ynput/ayon-addon": {
+            import: false,
+            requiredVersion: `^${addonApiVersion}`,
+            singleton: true,
+          },
         },
       }),
     ],

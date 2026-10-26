@@ -1,8 +1,4 @@
-import {
-  api,
-  FolderListModel,
-  foldersApi,
-} from "@ynput/ayon-frontend-shared/api";
+import { api, foldersApi } from "@ynput/ayon-frontend-shared/api";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 /**
@@ -34,14 +30,11 @@ const foldersInjectedApi = api.injectEndpoints({
 
           const results = await Promise.all(promises);
 
-          const data = results.map(
-            (res: { data: FolderListModel }, index: number) => {
-              const projectName = projectNames[index];
-              const folderIds =
-                res?.data?.folders.map((folder) => folder.id) || [];
-              return { projectName, folderIds };
-            },
-          );
+          const data = results.map((res, index) => {
+            const projectName = projectNames[index];
+            const folderIds = res?.data?.folders.map((folder) => folder.id) || [];
+            return { projectName, folderIds };
+          });
 
           return { data: data };
         } catch (error: unknown) {

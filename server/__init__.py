@@ -10,5 +10,7 @@ class AddonFullTemplate(BaseServerAddon):
             "CommentsProject",
             "CommentsStudio",
             "CommentsModalApp",
+            # contributions to slots (frontend/src/manifest.ts)
+            "manifest",
         ],
     }

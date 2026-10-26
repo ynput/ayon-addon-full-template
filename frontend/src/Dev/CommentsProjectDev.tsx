@@ -21,7 +21,13 @@ const CommentsProjectDev: FC = () => {
   const viewType = commentsProjectRemote.viewType;
 
   return (
-    <SlicerProvider>
+    <SlicerProvider
+      page="comments"
+      projectName={projectName}
+      viewSettings={undefined}
+      isLoadingViews={false}
+      updateViewSettings={async () => {}}
+    >
       <ProjectContextProvider projectName={projectName}>
         <ProjectFoldersContextProvider projectName={projectName}>
           <ViewsProvider
