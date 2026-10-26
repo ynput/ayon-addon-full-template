@@ -1,14 +1,19 @@
 // specific comments for a project
-import {
-  useAddonProjectContext,
-  useProjectFoldersContext,
-} from "@ynput/ayon-frontend-shared/context";
+import { useProjectFoldersContext } from "@ynput/ayon-frontend-shared/context";
 import { FC, useMemo } from "react";
 import { ProjectCommentsArgs } from "../api/getComments";
 import CommentsFeed from "./CommentsFeed";
 
-const ProjectComments: FC = () => {
-  const { projectName, state } = useAddonProjectContext();
+interface ProjectCommentsProps {
+  projectName: string;
+  /** folders selected in the slicer (folder id: selected); all folders when empty */
+  rowSelection?: Record<string, boolean>;
+}
+
+const ProjectComments: FC<ProjectCommentsProps> = ({
+  projectName,
+  rowSelection,
+}) => {
   const { folders, isLoading, getChildFolderIds } = useProjectFoldersContext();
 
   //   get all folders for when there is no selection
@@ -17,7 +22,6 @@ const ProjectComments: FC = () => {
     [folders],
   );
 
-  const rowSelection = state.slicer.rowSelection;
   const selectedFolderIds = useMemo(() => {
     const selection =
       rowSelection && Object.keys(rowSelection).length > 0
@@ -38,7 +42,7 @@ const ProjectComments: FC = () => {
   }, [rowSelection, allFolderIds, getChildFolderIds]);
 
   const projectArgs: ProjectCommentsArgs = {
-    projectName: projectName as string,
+    projectName,
     folderIds: selectedFolderIds,
   };
 

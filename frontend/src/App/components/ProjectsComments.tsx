@@ -8,16 +8,13 @@ import { useListProjectsQuery } from "@ynput/ayon-frontend-shared/api";
 import { useGetCommentsProjectFoldersQuery } from "../api/getFolders";
 import CommentsFeed from "./CommentsFeed";
 import { Comment } from "../api/getComments";
+import { toast } from "@ynput/ayon-addon";
 
 interface ProjectsCommentsProps {
-  toast?: any;
   onCommentSelect?: (comment: Comment) => void;
 }
 
-const ProjectsComments: FC<ProjectsCommentsProps> = ({
-  toast,
-  onCommentSelect,
-}) => {
+const ProjectsComments: FC<ProjectsCommentsProps> = ({ onCommentSelect }) => {
   // use the pre-made query to get active projects
   const { data: projects = [], isLoading } = useListProjectsQuery({
     active: true,
@@ -71,9 +68,9 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({
       {!error && !!projectsFolders.length && (
         <CommentsFeed
           projectArgs={projectsFolders}
-          onSelect={(activityId) =>
-            onCommentSelect?.(activityId) || toast?.info("A comment!")
-          } // will only show up in ayon-frontend as toast system is not available in this app
+          onSelect={(comment) =>
+            onCommentSelect ? onCommentSelect(comment) : toast.info("A comment!")
+          }
         />
       )}
     </SimpleTableProvider>

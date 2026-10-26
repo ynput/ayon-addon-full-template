@@ -80,8 +80,6 @@ export default ({ mode, command }: { mode: string; command: string }) => {
         // AYON loads the modules at runtime, it needs no federation type declarations
         dts: false,
         exposes: {
-          "./CommentsProject": "./src/Remotes/CommentsProjectRemote.tsx",
-          "./CommentsStudio": "./src/Remotes/CommentsStudioRemote.tsx",
           "./CommentsModalApp": "./src/Remotes/CommentsModalRemote.tsx",
           // contributions to AYON's slots, see src/manifest.ts
           "./manifest": "./src/manifest.ts",

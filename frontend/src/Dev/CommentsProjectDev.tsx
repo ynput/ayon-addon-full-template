@@ -2,8 +2,7 @@
 // (the store and app level providers come from main.tsx, these are the project page ones)
 
 import { useAppDispatch } from "@/App/client/hooks";
-import commentsProjectRemote from "@/Remotes/CommentsProjectRemote";
-import { ProjectPageRemote } from "@ynput/ayon-frontend-shared/components";
+import CommentsProjectPage from "@/pages/CommentsProjectPage";
 import {
   ProjectContextProvider,
   ProjectFoldersContextProvider,
@@ -18,7 +17,6 @@ const CommentsProjectDev: FC = () => {
 
   //   @ts-expect-error env var
   const projectName = import.meta.env.VITE_SERVER_URL || "demo_Commercial";
-  const viewType = commentsProjectRemote.viewType;
 
   return (
     <SlicerProvider
@@ -31,16 +29,16 @@ const CommentsProjectDev: FC = () => {
       <ProjectContextProvider projectName={projectName}>
         <ProjectFoldersContextProvider projectName={projectName}>
           <ViewsProvider
-            viewType={viewType}
+            viewType="project-comments"
             projectName={projectName}
             dispatch={dispatch}
           >
             <Views />
             <PageWrapper>
-              <ProjectPageRemote
-                Component={commentsProjectRemote.component}
-                slicer={commentsProjectRemote.slicer}
+              <CommentsProjectPage
+                slot="project.page"
                 projectName={projectName}
+                project={undefined}
               />
             </PageWrapper>
           </ViewsProvider>
