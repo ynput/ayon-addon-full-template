@@ -7,7 +7,7 @@ import { WithViews } from "./WithViews";
 
 const CommentsStudioDev: FC = () => (
   <WithViews>
-    <CommentsStudioPage slot="studio.page" />
+    <CommentsStudioPage slot="studio.page" selectedProjects={[]} />
   </WithViews>
 );
 

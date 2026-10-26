@@ -5,15 +5,15 @@ import SimpleTable, {
 import { FC, useMemo, useState } from "react";
 import { RowSelectionState } from "@tanstack/react-table";
 import { useListProjectsQuery } from "@ynput/ayon-frontend-shared/api";
-import { useGetCommentsProjectFoldersQuery } from "../api/getFolders";
-import CommentsFeed from "./CommentsFeed";
+import ProjectsCommentsFeed from "./ProjectsCommentsFeed";
 import { Comment } from "../api/getComments";
-import { toast } from "@ynput/ayon-addon";
 
 interface ProjectsCommentsProps {
   onCommentSelect?: (comment: Comment) => void;
 }
 
+// a project picker next to the comments of the picked projects, for places without AYON's
+// project list (the header dialog). Studio pages use <ProjectList> instead.
 const ProjectsComments: FC<ProjectsCommentsProps> = ({ onCommentSelect }) => {
   // use the pre-made query to get active projects
   const { data: projects = [], isLoading } = useListProjectsQuery({
@@ -40,11 +40,6 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({ onCommentSelect }) => {
       .map(([projectName]) => projectName);
   }, [selectedProjects]);
 
-  const { data: projectsFolders = [], error } = useGetCommentsProjectFoldersQuery(
-    selectedProjectNames,
-    { skip: !selectedProjectNames.length },
-  );
-
   return (
     <SimpleTableProvider
       rowSelection={selectedProjects}
@@ -64,15 +59,10 @@ const ProjectsComments: FC<ProjectsCommentsProps> = ({ onCommentSelect }) => {
           enableClickToDeselect
         />
       </div>
-      {error && <div>Error loading folders.</div>}
-      {!error && !!projectsFolders.length && (
-        <CommentsFeed
-          projectArgs={projectsFolders}
-          onSelect={(comment) =>
-            onCommentSelect ? onCommentSelect(comment) : toast.info("A comment!")
-          }
-        />
-      )}
+      <ProjectsCommentsFeed
+        projectNames={selectedProjectNames}
+        onCommentSelect={onCommentSelect}
+      />
     </SimpleTableProvider>
   );
 };

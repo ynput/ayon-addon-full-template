@@ -6,13 +6,13 @@ import CommentsFeed from "./CommentsFeed";
 
 interface ProjectCommentsProps {
   projectName: string;
-  /** folders selected in the slicer (folder id: selected); all folders when empty */
-  rowSelection?: Record<string, boolean>;
+  /** ids of the folders selected in the slicer; all folders when empty */
+  selectedFolders?: string[];
 }
 
 const ProjectComments: FC<ProjectCommentsProps> = ({
   projectName,
-  rowSelection,
+  selectedFolders = [],
 }) => {
   const { folders, isLoading, getChildFolderIds } = useProjectFoldersContext();
 
@@ -23,23 +23,16 @@ const ProjectComments: FC<ProjectCommentsProps> = ({
   );
 
   const selectedFolderIds = useMemo(() => {
-    const selection =
-      rowSelection && Object.keys(rowSelection).length > 0
-        ? Object.entries(rowSelection).flatMap(([folderId, isSelected]) =>
-            isSelected ? [folderId] : [],
-          )
-        : [];
-
-    if (!selection.length) {
+    if (!selectedFolders.length) {
       return allFolderIds;
     }
 
     // get all child ids as well as selected
-    const folderIds = getChildFolderIds(selection, true);
+    const folderIds = getChildFolderIds(selectedFolders, true);
 
     // unique list
     return Array.from(new Set(folderIds));
-  }, [rowSelection, allFolderIds, getChildFolderIds]);
+  }, [selectedFolders, allFolderIds, getChildFolderIds]);
 
   const projectArgs: ProjectCommentsArgs = {
     projectName,

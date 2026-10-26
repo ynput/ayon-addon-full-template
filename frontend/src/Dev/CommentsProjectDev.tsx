@@ -39,6 +39,7 @@ const CommentsProjectDev: FC = () => {
                 slot="project.page"
                 projectName={projectName}
                 project={undefined}
+                slicer={{ sliceType: "hierarchy", selection: [] }}
               />
             </PageWrapper>
           </ViewsProvider>
