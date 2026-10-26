@@ -9,6 +9,7 @@ import {
   headerItem,
   projectListMenuItem,
   projectPage,
+  slicerMenuItem,
   studioPage,
   tableColumn,
 } from "@ynput/ayon-addon/manifest";
@@ -69,6 +70,15 @@ export default defineAddon({
       icon: "add_link",
       in: ["context", "dropdown"],
       run: () => import("./menu/copyProjectCommentsLink"),
+    }),
+    // in the slicer's right-click menu and panel dropdown, for folders of the hierarchy
+    slicerMenuItem({
+      id: "copy_comment_link",
+      label: "Copy comment link",
+      icon: "add_link",
+      sliceTypes: ["hierarchy"],
+      in: ["context", "dropdown"],
+      run: () => import("./menu/copyFolderCommentLinks"),
     }),
     // number of comments, in the Overview, Products and Lists tables
     tableColumn({
