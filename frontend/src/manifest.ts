@@ -5,6 +5,7 @@ import {
   defineAddon,
   detailsPanelMenuItem,
   detailsPanelTab,
+  entityMenuItem,
   headerItem,
   projectPage,
   studioPage,
@@ -49,6 +50,15 @@ export default defineAddon({
       label: "Copy comment link",
       icon: "add_link",
       entityTypes: ["folder", "task", "version"],
+      run: () => import("./menu/copyCommentLink"),
+    }),
+    // the same item in the tables' right-click menu, for one selected entity
+    entityMenuItem({
+      id: "copy_comment_link",
+      label: "Copy comment link",
+      icon: "add_link",
+      entityTypes: ["folder", "task", "version"],
+      selection: "single",
       run: () => import("./menu/copyCommentLink"),
     }),
     // number of comments, in the Overview, Products and Lists tables

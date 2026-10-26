@@ -69,7 +69,7 @@ directly; data comes from `@ynput/ayon-frontend-shared/api`.
 | `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects` |
 | `header.item` | `src/header/CommentsDialog.tsx` | Comments button next to Home; AYON draws the button, the dialog gets `open` / `onClose` |
 | `detailsPanel.tab` | `src/panel/CommentsTab.tsx` | Comments tab of the details panel, for folders, tasks and versions: the comments on the open `entities` |
-| `detailsPanel.menuItem` | `src/menu/copyCommentLink.ts` | "Copy comment link" in the panel's more menu; a `run` function AYON calls on click |
+| `detailsPanel.menuItem`, `entityMenuItem` | `src/menu/copyCommentLink.ts` | "Copy comment link" in the panel's more menu and the tables' right-click menu; one `run` function for both, told apart by `ctx.slot` |
 | `tableColumn` | `src/table/CommentCountCell.tsx`, `src/table/useCommentCounts.ts` | Comment count column in the Overview, Products and Lists tables: `useData` runs once per table for the rows on screen, each cell gets its `value` |
 
 AYON owns the state of the slicer and the project list (saved per page, like its own pages); the
