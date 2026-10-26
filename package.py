@@ -24,5 +24,7 @@ ayon_required_addons = {}
 # - if addon is used in same bundle the version range must be valid
 ayon_compatible_addons = {}
 
-# Optional: specify minimum AYON server version if needed
-ayon_server_version = ">=1.5.4"
+# Minimum AYON server version: the frontend uses the web app's redux store, api
+#   cache and shared contexts, which the server provides from 1.17.0. The -0 lets
+#   1.17.0 dev and pre-release servers through, semver ranks them below 1.17.0
+ayon_server_version = ">=1.17.0-0"

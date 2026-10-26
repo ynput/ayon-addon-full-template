@@ -6,7 +6,7 @@ import {
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 /**
- * Result of the getProjectFolders query: a list of folder IDs.
+ * Result of the getCommentsProjectFolders query: a list of folder IDs.
  */
 export type GetProjectFoldersResult = {
   projectName: string;
@@ -14,13 +14,16 @@ export type GetProjectFoldersResult = {
 }[];
 
 /**
- * Arguments for the getProjectFolders query: a list of project names.
+ * Arguments for the getCommentsProjectFolders query: a list of project names.
  */
 export type GetProjectFoldersArgs = string[];
 
+// Endpoints are injected into the AYON api, which every addon and AYON itself share. Prefix
+// endpoint names with the addon name: with overrideExisting: false an endpoint whose name is
+// already taken (AYON has its own getProjectFolders) is skipped and the existing one is used.
 const foldersInjectedApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getProjectFolders: build.query<GetProjectFoldersResult, string[]>({
+    getCommentsProjectFolders: build.query<GetProjectFoldersResult, string[]>({
       queryFn: async (projectNames, { dispatch }) => {
         try {
           const promises = projectNames.map((projectName) =>
@@ -50,4 +53,4 @@ const foldersInjectedApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetProjectFoldersQuery } = foldersInjectedApi;
+export const { useGetCommentsProjectFoldersQuery } = foldersInjectedApi;

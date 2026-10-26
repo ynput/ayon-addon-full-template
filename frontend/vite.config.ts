@@ -2,11 +2,36 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
 import { federation } from "@module-federation/vite";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 
 import { dependencies } from "./package.json";
 
-export default ({ mode }: { mode: string }) => {
+// Inside AYON the host provides these, so the addon uses the host's Redux store, api cache and
+// React contexts (GlobalContext, ProjectContext, ...) instead of its own copies.
+// Every entry of @ynput/ayon-frontend-shared is shared: an entry left out would bring its own
+// copy of the api and contexts with it.
+const sharedPackageDir = path.resolve(
+  __dirname,
+  "node_modules/@ynput/ayon-frontend-shared",
+);
+const sharedPackage = JSON.parse(
+  readFileSync(path.join(sharedPackageDir, "package.json"), "utf8"),
+);
+const ayonShared = Object.fromEntries(
+  Object.entries(sharedPackage.exports as Record<string, { import: string }>)
+    // skip entries the published package lists but doesn't ship
+    .filter(([, entry]) => existsSync(path.join(sharedPackageDir, entry.import)))
+    .map(([subpath]) => [
+      path.posix.join("@ynput/ayon-frontend-shared", subpath),
+      {
+        requiredVersion: dependencies["@ynput/ayon-frontend-shared"],
+        singleton: true,
+      },
+    ]),
+);
+
+export default ({ mode, command }: { mode: string; command: string }) => {
   Object.assign(process?.env, loadEnv(mode, process?.cwd(), ""));
 
   const SERVER_URL = process?.env?.SERVER_URL || "http://localhost:5000";
@@ -43,13 +68,20 @@ export default ({ mode }: { mode: string }) => {
       federation({
         filename: "remoteEntry.js",
         name: "comments",
+        // AYON loads the modules at runtime, it needs no federation type declarations
+        dts: false,
         exposes: {
           "./CommentsProject": "./src/Remotes/CommentsProjectRemote.tsx",
           "./CommentsStudio": "./src/Remotes/CommentsStudioRemote.tsx",
           "./CommentsModalApp": "./src/Remotes/CommentsModalRemote.tsx",
         },
         remotes: {},
-        shared: {
+        // use what AYON already loaded (its store, api and contexts), even when this addon was
+        // built against a newer version
+        shareStrategy: "loaded-first",
+        // Only the build runs inside AYON. The dev server runs on its own: nothing to share with,
+        // and vite pre-bundles these like any other dependency.
+        shared: command !== "build" ? {} : {
           react: {
             requiredVersion: dependencies.react,
             singleton: true,
@@ -66,6 +98,15 @@ export default ({ mode }: { mode: string }) => {
             requiredVersion: dependencies["@ynput/ayon-react-components"],
             singleton: true,
           },
+          "@reduxjs/toolkit": {
+            requiredVersion: dependencies["@reduxjs/toolkit"],
+            singleton: true,
+          },
+          "react-redux": {
+            requiredVersion: dependencies["react-redux"],
+            singleton: true,
+          },
+          ...ayonShared,
         },
       }),
     ],

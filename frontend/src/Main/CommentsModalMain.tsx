@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Button, Dialog } from "@ynput/ayon-react-components";
-import { store } from "@/App/client/store";
 import ProjectsComments from "@/App/components/ProjectsComments";
-import {
-  GlobalProvider,
-  PowerpackProvider,
-} from "@ynput/ayon-frontend-shared/context";
-import { Provider } from "react-redux";
 import {
   Location,
   NavigateFunction,
@@ -24,6 +18,8 @@ export type RemoteAppProps = {
   navigate: NavigateFunction;
 };
 
+// Rendered by AYON at the app root, which already provides the store, GlobalProvider and
+// PowerpackProvider, so no providers are needed here.
 const CommentsModalMain = (props: RemoteAppProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [navElement, setNavElement] = useState<Element | null>(null);
@@ -55,42 +51,38 @@ const CommentsModalMain = (props: RemoteAppProps) => {
   };
 
   return (
-    <Provider store={store}>
-      <GlobalProvider>
-        <PowerpackProvider>
-          {navElement &&
-            (createPortal(
-              <Button
-                icon="chat"
-                onClick={() => setIsOpen(true)}
-                variant="nav"
-                className="nav"
-              >
-                Comments
-              </Button>,
-              navElement,
-            ) as any)}
-          <Dialog
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            header="Project Comments"
-            size="lg"
+    <>
+      {navElement &&
+        (createPortal(
+          <Button
+            icon="chat"
+            onClick={() => setIsOpen(true)}
+            variant="nav"
+            className="nav"
           >
-            <div
-              style={{
-                height: "600px",
-                maxHeight: "80vh",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
-              <ProjectsComments onCommentSelect={handleNavigateToComment} />
-            </div>
-          </Dialog>
-        </PowerpackProvider>
-      </GlobalProvider>
-    </Provider>
+            Comments
+          </Button>,
+          navElement,
+        ) as any)}
+      <Dialog
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        header="Project Comments"
+        size="lg"
+      >
+        <div
+          style={{
+            height: "600px",
+            maxHeight: "80vh",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <ProjectsComments onCommentSelect={handleNavigateToComment} />
+        </div>
+      </Dialog>
+    </>
   );
 };
 

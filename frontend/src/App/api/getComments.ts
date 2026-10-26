@@ -8,6 +8,10 @@ import {
 
 // creates new redux queries to get comments for given projects and folders
 const COMMENT_LIST_TAG = { type: "comment" as const, id: "LIST" };
+// AYON invalidates this tag when a comment is created, edited or deleted anywhere in the app
+// (e.g. the details panel). The addon shares the host's api cache, so providing it here
+// refetches the comments feed too.
+const ACTIVITY_LIST_TAG = { type: "activity" as const, id: "LIST" };
 
 // because we are transforming the response we need to update the result type
 export type Comment = CommentFragment & { projectName: string };
@@ -30,8 +34,9 @@ const getCommentTags = (result: GetCommentsResult | undefined) =>
           id: node.activityId,
         })),
         COMMENT_LIST_TAG,
+        ACTIVITY_LIST_TAG,
       ]
-    : [COMMENT_LIST_TAG];
+    : [COMMENT_LIST_TAG, ACTIVITY_LIST_TAG];
 
 const enhancedApi = api.enhanceEndpoints<TagTypes, UpdatedDefinitions>({
   endpoints: {

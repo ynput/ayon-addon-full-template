@@ -1,25 +1,10 @@
-import { store } from "@/App/client/store";
 import ProjectsComments from "@/App/components/ProjectsComments";
 import { RemotePageProps } from "@ynput/ayon-frontend-shared/components";
-import {
-  GlobalProvider,
-  PowerpackProvider,
-} from "@ynput/ayon-frontend-shared/context";
-import { Provider } from "react-redux";
 
+// Rendered inside AYON, which already provides the store, GlobalProvider and
+// PowerpackProvider, so no providers are needed here.
 const CommentsStudioMain = (props: RemotePageProps) => {
-  return (
-    // redux store to allow for addon to make api calls
-    <Provider store={store}>
-      {/* provides useful prefetched data */}
-      <GlobalProvider>
-        {/* required */}
-        <PowerpackProvider>
-          <ProjectsComments toast={props.toast} />
-        </PowerpackProvider>
-      </GlobalProvider>
-    </Provider>
-  );
+  return <ProjectsComments toast={props.toast} />;
 };
 
 export default CommentsStudioMain;
