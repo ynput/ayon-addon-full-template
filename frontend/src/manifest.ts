@@ -8,6 +8,7 @@ import {
   headerItem,
   projectPage,
   studioPage,
+  tableColumn,
 } from "@ynput/ayon-addon/manifest";
 
 export default defineAddon({
@@ -49,6 +50,16 @@ export default defineAddon({
       icon: "add_link",
       entityTypes: ["folder", "task", "version"],
       run: () => import("./menu/copyCommentLink"),
+    }),
+    // number of comments, in the Overview, Products and Lists tables
+    tableColumn({
+      id: "comment_count",
+      label: "Comments",
+      icon: "chat",
+      entityTypes: ["folder", "task", "version"],
+      width: 110,
+      cell: () => import("./table/CommentCountCell"),
+      useData: () => import("./table/useCommentCounts"),
     }),
   ],
 });
