@@ -68,6 +68,7 @@ directly; data comes from `@ynput/ayon-frontend-shared/api`.
 | `project.page` | `src/pages/CommentsProjectPage.tsx` | Comments tab of a project: `ProjectPageLayout` with AYON's `Slicer`, the feed filtered by `useSlot('project.page').slicer` |
 | `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects` |
 | `header.item` | `src/header/CommentsDialog.tsx` | Comments button next to Home; AYON draws the button, the dialog gets `open` / `onClose` |
+| `detailsPanel.tab` | `src/panel/CommentsTab.tsx` | Comments tab of the details panel, for folders, tasks and versions: the comments on the open `entities` |
 
 AYON owns the state of the slicer and the project list (saved per page, like its own pages); the
 page only decides where they go.

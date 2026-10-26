@@ -3,6 +3,7 @@
 // a dynamic import that AYON loads when its slot needs it.
 import {
   defineAddon,
+  detailsPanelTab,
   headerItem,
   projectPage,
   studioPage,
@@ -31,6 +32,14 @@ export default defineAddon({
       icon: "chat",
       placement: "left",
       component: () => import("./header/CommentsDialog"),
+    }),
+    // a details panel tab with the comments on the open folders, tasks and versions
+    detailsPanelTab({
+      id: "comments",
+      label: "Comments",
+      icon: "chat",
+      entityTypes: ["folder", "task", "version"],
+      component: () => import("./panel/CommentsTab"),
     }),
   ],
 });
