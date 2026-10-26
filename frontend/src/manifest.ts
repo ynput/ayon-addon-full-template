@@ -9,6 +9,7 @@ import {
   headerItem,
   projectListMenuItem,
   projectPage,
+  projectTableCustomizeSection,
   projectTableToolbarItem,
   slicerMenuItem,
   studioPage,
@@ -88,6 +89,13 @@ export default defineAddon({
       label: "Comments",
       tooltip: "Comments in this project",
       component: () => import("./toolbar/CommentsToolbarDialog"),
+    }),
+    // a section in the Overview, Products and Lists Customize panels
+    projectTableCustomizeSection({
+      id: "comments",
+      title: "Comments",
+      icon: "chat",
+      component: () => import("./customize/CommentsCustomizeSection"),
     }),
     // number of comments, in the Overview, Products and Lists tables
     tableColumn({

@@ -73,6 +73,7 @@ directly; data comes from `@ynput/ayon-frontend-shared/api`.
 | `projectList.menuItem` | `src/menu/copyProjectCommentsLink.ts` | "Copy comments page link" for the selected projects, in the project list's right-click menu and dropdown (`in`) |
 | `slicer.menuItem` | `src/menu/copyFolderCommentLinks.ts` | "Copy comment link" for the selected folders, in the slicer's right-click menu and dropdown, hierarchy only (`sliceTypes`) |
 | `projectTable.toolbarItem` | `src/toolbar/CommentsToolbarDialog.tsx` | Comments button in the Overview, Products and Lists toolbars; AYON draws it before Customize, the dialog gets `open` / `onClose` (and `list` on Lists) |
+| `projectTable.customizeSection` | `src/customize/CommentsCustomizeSection.tsx` | Comments section in the tables' Customize panel: the feeds' sort order, in the addon's slice of the AYON store; loads when opened |
 | `tableColumn` | `src/table/CommentCountCell.tsx`, `src/table/useCommentCounts.ts` | Comment count column in the Overview, Products and Lists tables: `useData` runs once per table for the rows on screen, each cell gets its `value` |
 
 AYON owns the state of the slicer and the project list (saved per page, like its own pages); the
