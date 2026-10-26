@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import {
   ProjectList,
   StudioPageLayout,
@@ -20,7 +21,7 @@ const SelectedProjectsComments = () => {
 
 // The Comments tab of the dashboard (studio.page slot, see src/manifest.ts). AYON keeps the
 // project selection (per page); the page places AYON's project list.
-const CommentsStudioPage = (_props: SlotProps<"studio.page">) => {
+const CommentsStudioPage: FC<SlotProps<"studio.page">> = () => {
   throwIfRequested("studio.comments");
   return (
     <StudioPageLayout sidebar={<ProjectList multiSelect />}>

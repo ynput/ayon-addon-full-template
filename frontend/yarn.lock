@@ -2773,6 +2773,10 @@
   dependencies:
     tslib "^2.6.3"
 
+"@ynput/ayon-addon-dev@link:.ayon-frontend/addon-dev":
+  version "0.0.0"
+  uid ""
+
 "@ynput/ayon-addon@link:.ayon-frontend/addon":
   version "0.0.0"
   uid ""

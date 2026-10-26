@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import {
   ProjectPageLayout,
   Slicer,
@@ -17,7 +18,7 @@ const SlicedComments = () => {
 
 // The Comments tab of the project page (project.page slot, see src/manifest.ts). AYON keeps the
 // slicer's state (per page, like its own pages); the page decides where the slicer goes.
-const CommentsProjectPage = (_props: SlotProps<"project.page">) => {
+const CommentsProjectPage: FC<SlotProps<"project.page">> = () => {
   throwIfRequested("project.comments");
   return (
     <ProjectPageLayout sidebar={<Slicer fields={["hierarchy"]} />}>

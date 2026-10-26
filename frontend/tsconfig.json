@@ -15,6 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    // the SDK packages are linked from an ayon-frontend checkout: resolve their imports (React's
+    // types) from this addon's node_modules, not the checkout's
+    "preserveSymlinks": true,
     "baseUrl": "src",
     "paths": {
       "@containers/*": ["./containers/*"],
