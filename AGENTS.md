@@ -82,13 +82,28 @@ page only decides where they go.
 ## Rules
 
 - **`@ynput/ayon-addon` is listed in the federation `shared` with `import: false`**
-  (`frontend/vite.config.ts`). The addon never bundles a copy: inside AYON it always uses AYON's,
+  (by `ayonAddon()` in `frontend/vite.config.ts`). The addon never bundles a copy: inside AYON it always uses AYON's,
   so there is one slot registry. The other shared packages (React, the store, the api, the
   contexts) are AYON's too, see the README.
 - Prefix endpoint and slice names with the addon name: every addon shares AYON's api and store.
 - A crash in a contribution stays in its own area: AYON wraps each one in an error boundary.
   Test it: `localStorage.setItem("addon-full-template:throw", "project.comments")` makes that
   component throw (`src/testing.ts`; ids are `<area>.<id>`, `*` for all).
+
+## Working on it
+
+| | |
+|---|---|
+| `yarn dev` | Inside AYON: watched build served for AYON's dev override; open the URL it prints (developer mode) |
+| `yarn dev:standalone` | The dev shell at http://localhost:5174: AYON's details panel, slicer and Customize panel around the contributions, stand-ins (marked *approximated*) for the header, page tabs, project list and table; a developer panel to pick the contribution, project and entities. Hot reload |
+| `yarn ayon-addon open <slot> <id> --project <p> [--entities task:<id>] [--run] [--screenshot f] --json` | One contribution in the dev shell, headless, against the server: errors, toasts, its context, the clipboard after `--run` |
+| `yarn ayon-addon preview <slot> <id> --fixture <name> --json` | The same from `frontend/dev/fixtures/<name>.json`, no server |
+| `yarn ayon-addon check --json` | The manifest as AYON reads it, the pieces' files, the types |
+| `yarn ayon-addon slots` | The slots of the installed `@ynput/ayon-addon` |
+
+Sign-in: `AYON_SERVER_URL` and `AYON_API_KEY` (a service user), or the AYON login page in the dev shell. In the AYON dev workbench the local stack and its key are found on their own. Details: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`; the slots and their contexts: `node_modules/@ynput/ayon-addon/AGENTS.md`.
+
+The fixtures in `frontend/dev/fixtures` are made-up demo data: `open --save-fixture` records real server data, which must not be committed as it is.
 
 ## Developing without a published SDK
 
@@ -103,6 +118,10 @@ yarn link-frontend <path-to-ayon-frontend>
 yarn install
 yarn build
 ```
+
+The dev shell also needs the ayon-frontend checkout's `@ynput/ayon-frontend-shared` (the
+published 0.7.0 has no login page and no slots): `yarn build:shared` there, then
+`yarn copy-shared .ayon-frontend` here. `yarn install --force` goes back to the published one.
 
 `main` keeps the old way (keyword-named modules such as `CommentsProject`, untyped props): it is
 the check that addons built that way keep working. This branch merges into `main` once an AYON

@@ -1,0 +1,159 @@
+{
+  "slot": "tableColumn",
+  "id": "comment_count",
+  "context": {
+    "projectName": "demo_project",
+    "page": "overview",
+    "entities": [
+      {
+        "entityType": "task",
+        "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60001",
+        "projectName": "demo_project",
+        "name": "lighting",
+        "label": "lighting"
+      },
+      {
+        "entityType": "task",
+        "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60002",
+        "projectName": "demo_project",
+        "name": "anim",
+        "label": "anim"
+      }
+    ]
+  },
+  "responses": {
+    "GET /api/projects/demo_project": {
+      "status": 200,
+      "body": {
+        "name": "demo_project",
+        "code": "demo",
+        "library": false,
+        "folderTypes": [
+          {
+            "name": "Shot",
+            "icon": "movie"
+          }
+        ],
+        "taskTypes": [
+          {
+            "name": "Lighting",
+            "shortName": "lgt",
+            "icon": "highlight"
+          },
+          {
+            "name": "Animation",
+            "shortName": "anim",
+            "icon": "directions_run"
+          }
+        ],
+        "linkTypes": [],
+        "statuses": [
+          {
+            "name": "In progress",
+            "shortName": "PRG",
+            "state": "in_progress",
+            "icon": "play_arrow",
+            "color": "#3498db",
+            "scope": [
+              "folder",
+              "task",
+              "version"
+            ]
+          }
+        ],
+        "tags": [],
+        "config": {},
+        "attrib": {},
+        "data": {},
+        "active": true,
+        "ownAttrib": [],
+        "createdAt": "2026-10-01T00:00:00+00:00",
+        "updatedAt": "2026-10-01T00:00:00+00:00"
+      }
+    },
+    "GET /api/projects/demo_project/anatomy": {
+      "status": 200,
+      "body": {}
+    },
+    "GET /api/projects/demo_project/productTypes": {
+      "status": 200,
+      "body": {
+        "productTypes": []
+      }
+    },
+    "graphql GetComments": {
+      "status": 200,
+      "body": {
+        "data": {
+          "project": {
+            "name": "demo_project",
+            "activities": {
+              "edges": [
+                {
+                  "cursor": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a001",
+                  "node": {
+                    "activityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a001",
+                    "activityType": "comment",
+                    "activityData": "{}",
+                    "entityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f60001",
+                    "body": "Warmer key light on the left, please.",
+                    "createdAt": "2026-10-20T09:12:00+00:00",
+                    "updatedAt": "2026-10-20T09:12:00+00:00",
+                    "author": {
+                      "name": "bob",
+                      "active": true,
+                      "attrib": {
+                        "fullName": "Bob Lead",
+                        "avatarUrl": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "cursor": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a002",
+                  "node": {
+                    "activityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a002",
+                    "activityType": "comment",
+                    "activityData": "{}",
+                    "entityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f60001",
+                    "body": "Done in v004, the rim light is softer too.",
+                    "createdAt": "2026-10-20T15:40:00+00:00",
+                    "updatedAt": "2026-10-20T15:40:00+00:00",
+                    "author": {
+                      "name": "alice",
+                      "active": true,
+                      "attrib": {
+                        "fullName": "Alice Artist",
+                        "avatarUrl": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "cursor": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a003",
+                  "node": {
+                    "activityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f6a003",
+                    "activityType": "comment",
+                    "activityData": "{}",
+                    "entityId": "0a1b2c3d4e5f11f0a1b2c3d4e5f60002",
+                    "body": "The jump needs two more frames of anticipation.",
+                    "createdAt": "2026-10-21T10:05:00+00:00",
+                    "updatedAt": "2026-10-21T10:05:00+00:00",
+                    "author": {
+                      "name": "bob",
+                      "active": true,
+                      "attrib": {
+                        "fullName": "Bob Lead",
+                        "avatarUrl": null
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

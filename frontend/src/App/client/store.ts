@@ -6,7 +6,7 @@ import { commentsSlice } from "./commentsSlice";
 // @ynput/ayon-frontend-shared (see the federation config in vite.config.ts), so `api` and
 // `rootReducer` here are the host's: queries share the host's cache, invalidating a tag
 // refetches host queries too, and slices injected below land in the host store.
-// On the dev server there is no host, see src/Dev/devStore.ts.
+// The dev shell (`yarn dev:standalone`) stands in for the host with a store of its own.
 
 // inject more tags to the api
 const tagTypes = ["comment"] as const;

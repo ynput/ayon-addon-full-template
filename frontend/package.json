@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev",
+    "dev:standalone": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev --standalone",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
     "generate-token": "node --env-file=.env.local ./gen/getAuth.js",
     "generate-gql": "cd gen && graphql-codegen --require dotenv/config",
     "copy-shared": "node ./scripts/copyShared.js",
