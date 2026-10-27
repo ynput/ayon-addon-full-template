@@ -1,20 +1,30 @@
 // specific comments for a project
-import { useProjectFoldersContext } from "@ynput/ayon-frontend-shared/context";
 import { FC, useMemo } from "react";
+import type { ProjectFolders } from "@ynput/ayon-addon";
 import { ProjectCommentsArgs } from "../api/getComments";
-import CommentsFeed from "./CommentsFeed";
+import CommentsFeed, { type CommentsSort } from "./CommentsFeed";
 
 interface ProjectCommentsProps {
   projectName: string;
+  /**
+   * the project's folders: `projectFolders` of the project.page context, or AYON's
+   * ProjectFoldersContext where the slot has none
+   */
+  projectFolders: Pick<ProjectFolders, "isLoading" | "getChildFolderIds"> & {
+    folders: { id: string }[];
+  };
   /** ids of the folders selected in the slicer; all folders when empty */
   selectedFolders?: string[];
+  sort?: CommentsSort;
 }
 
 const ProjectComments: FC<ProjectCommentsProps> = ({
   projectName,
+  projectFolders,
   selectedFolders = [],
+  sort,
 }) => {
-  const { folders, isLoading, getChildFolderIds } = useProjectFoldersContext();
+  const { folders, isLoading, getChildFolderIds } = projectFolders;
 
   //   get all folders for when there is no selection
   const allFolderIds = useMemo(
@@ -43,7 +53,7 @@ const ProjectComments: FC<ProjectCommentsProps> = ({
     return <div>Loading folders...</div>;
   }
 
-  return <CommentsFeed projectArgs={[projectArgs]} />;
+  return <CommentsFeed projectArgs={[projectArgs]} sort={sort} />;
 };
 
 export default ProjectComments;

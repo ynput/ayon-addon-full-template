@@ -7,12 +7,19 @@ import {
 } from "@ynput/ayon-addon";
 import ProjectComments from "@/App/components/ProjectComments";
 import { throwIfRequested } from "@/testing";
+import { useViewSort } from "./useViewSort";
 
-// the feed reads the slicer selection from the slot context
+// the feed reads the slicer selection, the project's folders and the view from the slot context
 const SlicedComments = () => {
-  const { projectName, slicer } = useSlot("project.page");
+  const { projectName, slicer, projectFolders, views } = useSlot("project.page");
+  const sort = useViewSort(views);
   return (
-    <ProjectComments projectName={projectName} selectedFolders={slicer.selection} />
+    <ProjectComments
+      projectName={projectName}
+      projectFolders={projectFolders}
+      selectedFolders={slicer.selection}
+      sort={sort}
+    />
   );
 };
 

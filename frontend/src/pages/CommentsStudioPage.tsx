@@ -8,13 +8,16 @@ import {
 } from "@ynput/ayon-addon";
 import ProjectsCommentsFeed from "@/App/components/ProjectsCommentsFeed";
 import { throwIfRequested } from "@/testing";
+import { useViewSort } from "./useViewSort";
 
 const SelectedProjectsComments = () => {
-  const { selectedProjects } = useSlot("studio.page");
+  const { selectedProjects, views } = useSlot("studio.page");
+  const sort = useViewSort(views);
   return (
     <ProjectsCommentsFeed
       projectNames={selectedProjects}
       onCommentSelect={() => toast.info("A comment!")}
+      sort={sort}
     />
   );
 };

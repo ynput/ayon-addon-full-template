@@ -30,6 +30,7 @@ export default defineAddon({
       id: "comments",
       title: "Comments",
       access: "manager",
+      viewType: "studio-comments",
       component: () => import("./pages/CommentsStudioPage"),
     }),
     // a header button next to Home, opening a dialog with the comments of picked projects

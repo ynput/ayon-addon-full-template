@@ -10,6 +10,13 @@ import { ActivityCommentItem } from "./ActivityCommentItem";
 import { useAppDispatch, useAppSelector } from "../client/hooks";
 import { selectSortOrder } from "../client/store";
 import { setSortOrder } from "../client/commentsSlice";
+import type { CommentsSortOrder } from "../client/commentsSlice";
+
+/** A sort order kept somewhere else than the store, e.g. in a page's view. */
+export interface CommentsSort {
+  sortOrder: CommentsSortOrder;
+  onChange: (sortOrder: CommentsSortOrder) => void;
+}
 
 const StyledFeed = styled.ul`
   list-style: none;
@@ -28,9 +35,11 @@ const StyledFeed = styled.ul`
 interface CommentsFeedProps {
   projectArgs: ProjectCommentsArgs[];
   onSelect?: (comment: Comment) => void;
+  /** pages pass their view's sort order; without it the feed keeps it in the store */
+  sort?: CommentsSort;
 }
 
-const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
+const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect, sort }) => {
   const {
     data: comments = [],
     error,
@@ -39,7 +48,10 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
 
   // addon state from the AYON store, kept when the page is closed and opened again
   const dispatch = useAppDispatch();
-  const sortOrder = useAppSelector(selectSortOrder);
+  const storedSortOrder = useAppSelector(selectSortOrder);
+  const sortOrder = sort?.sortOrder ?? storedSortOrder;
+  const onSortOrderChange = (next: CommentsSortOrder) =>
+    sort ? sort.onChange(next) : dispatch(setSortOrder(next));
   const sortedComments = useMemo(() => {
     const sorted = [...comments].sort((a, b) =>
       a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0,
@@ -66,9 +78,7 @@ const CommentsFeed: FC<CommentsFeedProps> = ({ projectArgs, onSelect }) => {
           icon={sortOrder === "newest" ? "arrow_downward" : "arrow_upward"}
           variant="text"
           onClick={() =>
-            dispatch(
-              setSortOrder(sortOrder === "newest" ? "oldest" : "newest"),
-            )
+            onSortOrderChange(sortOrder === "newest" ? "oldest" : "newest")
           }
         >
           {sortOrder === "newest" ? "Newest first" : "Oldest first"}

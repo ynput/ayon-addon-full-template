@@ -65,8 +65,8 @@ directly; data comes from `@ynput/ayon-frontend-shared/api`.
 
 | Slot | File | What |
 |---|---|---|
-| `project.page` | `src/pages/CommentsProjectPage.tsx` | Comments tab of a project: `ProjectPageLayout` with AYON's `Slicer`, the feed filtered by `useSlot('project.page').slicer` |
-| `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects` |
+| `project.page` | `src/pages/CommentsProjectPage.tsx` | Comments tab of a project: `ProjectPageLayout` with AYON's `Slicer`, the feed filtered by `useSlot('project.page').slicer` and the project's folders from `projectFolders`; the sort order is saved in the page's view (`viewType`, `views`, `src/pages/useViewSort.ts`) |
+| `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects`; the sort order is saved in the page's view, as on the project page |
 | `header.item` | `src/header/CommentsDialog.tsx` | Comments button next to Home; AYON draws the button, the dialog gets `open` / `onClose` |
 | `detailsPanel.tab` | `src/panel/CommentsTab.tsx` | Comments tab of the details panel, for folders, tasks and versions: the comments on the open `entities` |
 | `detailsPanel.menuItem`, `entityMenuItem` | `src/menu/copyCommentLink.ts` | "Copy comment link" in the panel's more menu and the tables' right-click menu; one `run` function for both, told apart by `ctx.slot` |
