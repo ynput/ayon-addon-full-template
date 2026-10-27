@@ -57,13 +57,15 @@ export default defineAddon({
       entityTypes: ["folder", "task", "version"],
       run: () => import("./menu/copyCommentLink"),
     }),
-    // the same item in the tables' right-click menu, for one selected entity
+    // the same item in the tables' right-click menu, for one selected entity: at the top, next
+    // to Copy (position "bottom", the default, puts an item above Delete)
     entityMenuItem({
       id: "copy_comment_link",
       label: "Copy comment link",
       icon: "add_link",
       entityTypes: ["folder", "task", "version"],
       selection: "single",
+      position: "top",
       run: () => import("./menu/copyCommentLink"),
     }),
     // in the project list's right-click menu and its "more" dropdown
