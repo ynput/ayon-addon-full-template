@@ -67,12 +67,12 @@ directly; data comes from `@ynput/ayon-frontend-shared/api`.
 |---|---|---|
 | `project.page` | `src/pages/CommentsProjectPage.tsx` | Comments tab of a project: `ProjectPageLayout` with AYON's `Slicer`, the feed filtered by `useSlot('project.page').slicer` and the project's folders from `projectFolders`; the sort order is saved in the page's view (`viewType`, `views`, `src/pages/useViewSort.ts`) |
 | `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects`; the sort order is saved in the page's view, as on the project page |
-| `header.item` | `src/header/CommentsDialog.tsx` | Comments button next to Home; AYON draws the button, the dialog gets `open` / `onClose` |
+| `header.item` | `src/header/CommentsDialog.tsx` | Comments button next to Home (`dialog`): AYON draws the button and opens its dialog around this content, which gets `close` |
 | `detailsPanel.tab` | `src/panel/CommentsTab.tsx` | Comments tab of the details panel, for folders, tasks and versions: the comments on the open `entities` |
 | `detailsPanel.menuItem`, `entityMenuItem` | `src/menu/copyCommentLink.ts` | "Copy comment link" in the panel's more menu and the tables' right-click menu; one `run` function for both, told apart by `ctx.slot` |
 | `projectList.menuItem` | `src/menu/copyProjectCommentsLink.ts` | "Copy comments page link" for the selected projects, in the project list's right-click menu and dropdown (`in`) |
 | `slicer.menuItem` | `src/menu/copyFolderCommentLinks.ts` | "Copy comment link" for the selected folders, in the slicer's right-click menu and dropdown, hierarchy only (`sliceTypes`) |
-| `projectTable.toolbarItem` | `src/toolbar/CommentsToolbarDialog.tsx` | Comments button in the Overview, Products and Lists toolbars; AYON draws it before Customize, the dialog gets `open` / `onClose` (and `list` on Lists) |
+| `projectTable.toolbarItem` | `src/toolbar/CommentsToolbarDialog.tsx`, `src/toolbar/commentLinksMenu.ts` | Comments button in the Overview, Products and Lists toolbars (`dialog`, gets `list` on Lists), and a comment links button (`menu`: the items, AYON shows them in its menu); AYON draws both before Customize |
 | `projectTable.customizeSection` | `src/customize/CommentsCustomizeSection.tsx` | Comments section in the tables' Customize panel: the feeds' sort order, in the addon's slice of the AYON store; loads when opened |
 | `tableColumn` | `src/table/CommentCountCell.tsx`, `src/table/useCommentCounts.ts` | Comment count column in the Overview, Products and Lists tables: `useData` runs once per table for the rows on screen, each cell gets its `value` |
 

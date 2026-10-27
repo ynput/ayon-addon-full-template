@@ -33,13 +33,17 @@ export default defineAddon({
       viewType: "studio-comments",
       component: () => import("./pages/CommentsStudioPage"),
     }),
-    // a header button next to Home, opening a dialog with the comments of picked projects
+    // a header button next to Home, opening a dialog with the comments of picked projects. A
+    // header or toolbar item sets one action: dialog, menu, run, to (navigate) or component (its
+    // own JSX instead of AYON's button)
     headerItem({
       id: "comments",
       label: "Comments",
       icon: "chat",
       placement: "left",
-      component: () => import("./header/CommentsDialog"),
+      dialogTitle: "Project Comments",
+      dialogSize: "lg",
+      dialog: () => import("./header/CommentsDialog"),
     }),
     // a details panel tab with the comments on the open folders, tasks and versions
     detailsPanelTab({
@@ -91,7 +95,15 @@ export default defineAddon({
       icon: "chat",
       label: "Comments",
       tooltip: "Comments in this project",
-      component: () => import("./toolbar/CommentsToolbarDialog"),
+      dialogSize: "lg",
+      dialog: () => import("./toolbar/CommentsToolbarDialog"),
+    }),
+    // and a menu next to it: AYON opens it under the button, the items come from the addon
+    projectTableToolbarItem({
+      id: "comment_links",
+      icon: "add_link",
+      tooltip: "Comment links",
+      menu: () => import("./toolbar/commentLinksMenu"),
     }),
     // a section in the Overview, Products and Lists Customize panels
     projectTableCustomizeSection({
