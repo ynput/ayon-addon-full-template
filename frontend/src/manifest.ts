@@ -53,12 +53,14 @@ export default defineAddon({
       entityTypes: ["folder", "task", "version"],
       component: () => import("./panel/CommentsTab"),
     }),
-    // "Copy comment link" in the details panel's more menu
+    // "Copy comment link" in the details panel: pinned, so it is a button in the panel's header
+    // next to the more menu (without pinned it is an entry in that menu)
     detailsPanelMenuItem({
       id: "copy_comment_link",
       label: "Copy comment link",
       icon: "add_link",
       entityTypes: ["folder", "task", "version"],
+      pinned: true,
       run: () => import("./menu/copyCommentLink"),
     }),
     // the same item in the tables' right-click menu, for one selected entity: at the top, next
