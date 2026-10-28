@@ -1,0 +1,161 @@
+{
+  "slot": "detailsPanel.tab",
+  "id": "specs",
+  "context": {
+    "projectName": "demo_project",
+    "entityType": "task",
+    "entities": [
+      {
+        "entityType": "task",
+        "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60001",
+        "projectName": "demo_project",
+        "name": "lighting",
+        "label": "lighting"
+      },
+      {
+        "entityType": "task",
+        "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60002",
+        "projectName": "demo_project",
+        "name": "anim",
+        "label": "anim"
+      }
+    ],
+    "scope": "addon-dev"
+  },
+  "responses": {
+    "GET /api/projects/demo_project": {
+      "status": 200,
+      "body": {
+        "name": "demo_project",
+        "code": "demo",
+        "library": false,
+        "folderTypes": [
+          {
+            "name": "Shot",
+            "icon": "movie"
+          }
+        ],
+        "taskTypes": [
+          {
+            "name": "Lighting",
+            "shortName": "lgt",
+            "icon": "highlight"
+          },
+          {
+            "name": "Animation",
+            "shortName": "anim",
+            "icon": "directions_run"
+          }
+        ],
+        "linkTypes": [],
+        "statuses": [
+          {
+            "name": "Not ready",
+            "shortName": "NRD",
+            "state": "not_started",
+            "icon": "fiber_new",
+            "color": "#434a56",
+            "scope": [
+              "folder",
+              "task",
+              "version"
+            ]
+          },
+          {
+            "name": "In progress",
+            "shortName": "PRG",
+            "state": "in_progress",
+            "icon": "play_arrow",
+            "color": "#3498db",
+            "scope": [
+              "folder",
+              "task",
+              "version"
+            ]
+          },
+          {
+            "name": "Approved",
+            "shortName": "APP",
+            "state": "done",
+            "icon": "task_alt",
+            "color": "#00f0b4",
+            "scope": [
+              "folder",
+              "task",
+              "version"
+            ]
+          }
+        ],
+        "tags": [],
+        "config": {},
+        "attrib": {},
+        "data": {},
+        "active": true,
+        "ownAttrib": [],
+        "createdAt": "2026-10-01T00:00:00+00:00",
+        "updatedAt": "2026-10-01T00:00:00+00:00"
+      }
+    },
+    "GET /api/projects/demo_project/anatomy": {
+      "status": 200,
+      "body": {}
+    },
+    "GET /api/projects/demo_project/productTypes": {
+      "status": 200,
+      "body": {
+        "productTypes": []
+      }
+    },
+    "graphql GetEntitySpecs": {
+      "status": 200,
+      "body": {
+        "data": {
+          "project": {
+            "tasks": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60001",
+                    "name": "lighting",
+                    "label": null,
+                    "ownAttrib": [],
+                    "attrib": {
+                      "frameStart": 1001,
+                      "frameEnd": 1096,
+                      "handleStart": 8,
+                      "handleEnd": 8,
+                      "fps": 25,
+                      "resolutionWidth": 2048,
+                      "resolutionHeight": 858,
+                      "pixelAspect": 1.0
+                    }
+                  }
+                },
+                {
+                  "node": {
+                    "id": "0a1b2c3d4e5f11f0a1b2c3d4e5f60002",
+                    "name": "anim",
+                    "label": null,
+                    "ownAttrib": [
+                      "frameEnd"
+                    ],
+                    "attrib": {
+                      "frameStart": 1001,
+                      "frameEnd": 1104,
+                      "handleStart": 8,
+                      "handleEnd": 8,
+                      "fps": 25,
+                      "resolutionWidth": 2048,
+                      "resolutionHeight": 858,
+                      "pixelAspect": 1.0
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

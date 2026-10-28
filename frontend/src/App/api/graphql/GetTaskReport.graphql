@@ -1,0 +1,22 @@
+# Every task of a project, for the task report.
+query GetTaskReport($projectName: String!) {
+  project(name: $projectName) {
+    name
+    tasks(first: 10000) {
+      edges {
+        node {
+          id
+          name
+          label
+          status
+          taskType
+          assignees
+          attrib(names: ["endDate"])
+          folder {
+            path
+          }
+        }
+      }
+    }
+  }
+}

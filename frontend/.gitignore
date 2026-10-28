@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ayon-frontend checkout the unpublished SDK packages are linked from (yarn link-frontend)
+.ayon-frontend

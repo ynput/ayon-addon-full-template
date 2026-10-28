@@ -6,9 +6,8 @@ class AddonFullTemplate(BaseServerAddon):
     settings_model = None
     addon_type = "server"
     frontend_modules = {
-        "comments": [
-            "CommentsProject",
-            "CommentsStudio",
-            "CommentsModalApp",
+        "production": [
+            # contributions to slots (frontend/src/manifest.ts)
+            "manifest",
         ],
     }

@@ -1,0 +1,61 @@
+# What a status summary line says about each entity. One query for any entity type: the
+# booleans pick the connection, the others are skipped.
+query GetEntitySummaries(
+  $projectName: String!
+  $ids: [String!]!
+  $folders: Boolean!
+  $tasks: Boolean!
+  $versions: Boolean!
+) {
+  project(name: $projectName) {
+    folders(ids: $ids) @include(if: $folders) {
+      edges {
+        node {
+          id
+          name
+          label
+          status
+          folderType
+        }
+      }
+    }
+    tasks(ids: $ids) @include(if: $tasks) {
+      edges {
+        node {
+          id
+          name
+          label
+          status
+          taskType
+          assignees
+          attrib(names: ["endDate"])
+          folder {
+            name
+            label
+          }
+        }
+      }
+    }
+    versions(ids: $ids) @include(if: $versions) {
+      edges {
+        node {
+          id
+          name
+          status
+          author
+          product {
+            name
+            folder {
+              name
+              label
+            }
+          }
+          task {
+            name
+            label
+          }
+        }
+      }
+    }
+  }
+}

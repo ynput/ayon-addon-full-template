@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { isArray } from "lodash";
 import { BlockCode, QuoteLine } from "./ActivityCommentItem.styled";
 

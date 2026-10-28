@@ -1,0 +1,55 @@
+# Frame range, fps and resolution of folders, tasks or versions. attrib is a JSON object of all
+# attributes. Folders and tasks inherit theirs, ownAttrib names the ones set on the entity itself;
+# versions record what was published, compared with their task (or folder).
+query GetEntitySpecs(
+  $projectName: String!
+  $ids: [String!]!
+  $folders: Boolean!
+  $tasks: Boolean!
+  $versions: Boolean!
+) {
+  project(name: $projectName) {
+    folders(ids: $ids) @include(if: $folders) {
+      edges {
+        node {
+          id
+          name
+          label
+          ownAttrib
+          attrib
+        }
+      }
+    }
+    tasks(ids: $ids) @include(if: $tasks) {
+      edges {
+        node {
+          id
+          name
+          label
+          ownAttrib
+          attrib
+        }
+      }
+    }
+    versions(ids: $ids) @include(if: $versions) {
+      edges {
+        node {
+          id
+          name
+          attrib
+          task {
+            name
+            attrib
+          }
+          product {
+            name
+            folder {
+              name
+              attrib
+            }
+          }
+        }
+      }
+    }
+  }
+}

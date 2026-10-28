@@ -7,7 +7,7 @@ generates:
   # Generate types + RTK Query hooks (excluding links)
   ../src/App/api/generated/graphql.ts:
     documents:
-      - "../**/*.graphql"
+      - "../src/**/*.graphql"
     plugins:
       - typescript
       - add:
