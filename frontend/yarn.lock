@@ -2781,10 +2781,10 @@
   version "0.0.0"
   uid ""
 
-"@ynput/ayon-frontend-shared@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@ynput/ayon-frontend-shared/-/ayon-frontend-shared-0.7.0.tgz#750badd3334504f46b051f47396269619d174799"
-  integrity sha512-aeV8pLvdweuttpcBOCdU5sr7bg+Ia/s/xBIL2/I0stBv+7VvuhvhWlPD1zX7joP9EbVS7FKfu1fphQ1N0ZhtgQ==
+"@ynput/ayon-frontend-shared@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@ynput/ayon-frontend-shared/-/ayon-frontend-shared-0.7.3.tgz#83f3206019ce5840be287efe092d1674f7334c12"
+  integrity sha512-kj9jwNcvgp/jVltY9tl3NRhJwi79+QJlj3MD6a7mdxvrxZZsuSBtGbLbOTQRVHM0oQw47mgZBLRD4qb5LYfufA==
   dependencies:
     "@dnd-kit/modifiers" "9.0.0"
     "@dnd-kit/utilities" "3.2.2"
@@ -2803,7 +2803,6 @@
     "@tanstack/react-virtual" "3.13.23"
     "@uiw/react-textarea-code-editor" "2.1.9"
     "@ynput/ayon-player" "1.0.2"
-    "@ynput/ayon-react-components" "^1.22.1"
     axios "1.20.0"
     clsx "2.1.1"
     custom-protocol-check "1.4.0"
@@ -2857,20 +2856,10 @@
     "@ynput/ayon-react-components" "^1.7.12"
     material-symbols "^0.24.0"
 
-"@ynput/ayon-react-components@^1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@ynput/ayon-react-components/-/ayon-react-components-1.22.0.tgz#6144d3ccf7c29dbf3a886d4630362051c95faf08"
-  integrity sha512-H8+KZT6wOFzcozGPoBuzHjzRK2Q9WUc1MiGoCG49b0QIbvl2v9s+9nx03q0HfCaXAD2ZdG4nCUzfBJnERabjrw==
-  dependencies:
-    clsx "^2.1.1"
-    match-sorter "^8.2.0"
-    overlayscrollbars "^2.3.2"
-    overlayscrollbars-react "^0.5.2"
-
-"@ynput/ayon-react-components@^1.22.1":
-  version "1.22.1"
-  resolved "https://registry.yarnpkg.com/@ynput/ayon-react-components/-/ayon-react-components-1.22.1.tgz#be16378d70ca06bd8ca570f61ec7e40743d65c26"
-  integrity sha512-kXxZPyUd9OXBpsLc8Lwcei3gPN7FXTlSoplLj0kSsfjQKDV076xwXYL8thGnsPjqSftKbrUmvXsbTYs5vJ4HAA==
+"@ynput/ayon-react-components@^1.23.0":
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/@ynput/ayon-react-components/-/ayon-react-components-1.23.0.tgz#3d86cff2c9f6bc84f351090a4f4537c13ce5fa47"
+  integrity sha512-rkuBswTYmtf1Y9C45kPdsp8G4+KzziEkZCYC2JD0j34Nq2hAbn2hg2U135rEcVVwHWP+gbGt2nCyN5ZNJSmYOQ==
   dependencies:
     clsx "^2.1.1"
     match-sorter "^8.2.0"
