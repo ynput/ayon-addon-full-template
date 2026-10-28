@@ -9,8 +9,8 @@ import styled from "styled-components";
 import { ActivityCommentItem } from "./ActivityCommentItem";
 import { useAppDispatch, useAppSelector } from "../client/hooks";
 import { selectSortOrder } from "../client/store";
-import { setSortOrder } from "../client/commentsSlice";
-import type { CommentsSortOrder } from "../client/commentsSlice";
+import { setSortOrder } from "../client/productionSlice";
+import type { CommentsSortOrder } from "../client/productionSlice";
 
 /** A sort order kept somewhere else than the store, e.g. in a page's view. */
 export interface CommentsSort {

@@ -18,14 +18,14 @@ import {
 
 export default defineAddon({
   contributes: [
-    // /projects/<project>/comments
+    // /projects/<project>/comments: the project's comments, filtered by the slicer
     projectPage({
       id: "comments",
       title: "Comments",
       viewType: "project-comments",
       component: () => import("./pages/CommentsProjectPage"),
     }),
-    // /dashboard/comments, for managers: it lists comments across projects
+    // /dashboard/comments, for managers: comments across the picked projects
     studioPage({
       id: "comments",
       title: "Comments",
@@ -33,96 +33,104 @@ export default defineAddon({
       viewType: "studio-comments",
       component: () => import("./pages/CommentsStudioPage"),
     }),
-    // a header button next to Home, opening a dialog with the comments of picked projects. A
-    // header or toolbar item sets one action: dialog, menu, run, to (navigate) or component (its
-    // own JSX instead of AYON's button)
+    // a header button before the inbox, opening a dialog with my tasks due this week. A header or
+    // toolbar item sets one action: dialog, menu, run, to (navigate) or component (its own JSX
+    // instead of AYON's button)
     headerItem({
-      id: "comments",
-      label: "Comments",
-      icon: "chat",
-      placement: "left",
-      dialogTitle: "Project Comments",
-      dialogSize: "lg",
-      dialog: () => import("./header/CommentsDialog"),
+      id: "my_deadlines",
+      label: "My deadlines",
+      icon: "event_upcoming",
+      placement: "right",
+      dialogTitle: "Due this week",
+      dialogSize: "md",
+      dialog: () => import("./header/MyDeadlinesDialog"),
     }),
-    // a details panel tab with the comments on the open folders, tasks and versions
+    // a details panel tab with the frame range, fps and resolution of the open entities
     detailsPanelTab({
-      id: "comments",
-      label: "Comments",
-      icon: "chat",
+      id: "specs",
+      label: "Shot specs",
+      icon: "aspect_ratio",
       entityTypes: ["folder", "task", "version"],
-      component: () => import("./panel/CommentsTab"),
+      component: () => import("./panel/ShotSpecsTab"),
     }),
-    // "Copy comment link" in the details panel: pinned, so it is a button in the panel's header
+    // "Copy status summary" in the details panel: pinned, so it is a button in the panel's header
     // next to the more menu (without pinned it is an entry in that menu)
     detailsPanelMenuItem({
-      id: "copy_comment_link",
-      label: "Copy comment link",
-      icon: "add_link",
+      id: "copy_summary",
+      label: "Copy status summary",
+      icon: "summarize",
       entityTypes: ["folder", "task", "version"],
       pinned: true,
-      run: () => import("./menu/copyCommentLink"),
+      run: () => import("./menu/copyStatusSummary"),
     }),
-    // the same item in the tables' right-click menu, for one selected entity: at the top, next
-    // to Copy (position "bottom", the default, puts an item above Delete)
+    // the same item in the tables' right-click menu, at the top next to Copy (position "bottom",
+    // the default, puts an item above Delete)
     entityMenuItem({
-      id: "copy_comment_link",
-      label: "Copy comment link",
-      icon: "add_link",
+      id: "copy_summary",
+      label: "Copy status summary",
+      icon: "summarize",
       entityTypes: ["folder", "task", "version"],
-      selection: "single",
       position: "top",
-      run: () => import("./menu/copyCommentLink"),
+      run: () => import("./menu/copyStatusSummary"),
+    }),
+    // and one that writes: only when every selected entity is a task
+    entityMenuItem({
+      id: "push_due_date",
+      label: "Push due date by a day",
+      icon: "more_time",
+      entityTypes: ["task"],
+      run: () => import("./menu/pushDueDate"),
     }),
     // in the project list's right-click menu and its "more" dropdown
     projectListMenuItem({
-      id: "copy_comments_page_link",
-      label: "Copy comments page link",
-      icon: "add_link",
+      id: "export_task_report",
+      label: "Export task report (CSV)",
+      icon: "download",
       in: ["context", "dropdown"],
-      run: () => import("./menu/copyProjectCommentsLink"),
+      run: () => import("./menu/exportTaskReport"),
     }),
     // in the slicer's right-click menu and panel dropdown, for folders of the hierarchy
     slicerMenuItem({
-      id: "copy_comment_link",
-      label: "Copy comment link",
-      icon: "add_link",
+      id: "copy_shot_list",
+      label: "Copy shot list",
+      icon: "movie",
       sliceTypes: ["hierarchy"],
       in: ["context", "dropdown"],
-      run: () => import("./menu/copyFolderCommentLinks"),
+      run: () => import("./menu/copyShotList"),
     }),
     // a button in the Overview, Products and Lists toolbars, before Customize
     projectTableToolbarItem({
-      id: "comments",
-      icon: "chat",
-      label: "Comments",
-      tooltip: "Comments in this project",
-      dialogSize: "lg",
-      dialog: () => import("./toolbar/CommentsToolbarDialog"),
+      id: "statuses",
+      icon: "bar_chart",
+      label: "Statuses",
+      tooltip: "How many are in each status",
+      dialogSize: "md",
+      dialog: () => import("./toolbar/StatusBreakdownDialog"),
     }),
     // and a menu next to it: AYON opens it under the button, the items come from the addon
     projectTableToolbarItem({
-      id: "comment_links",
-      icon: "add_link",
-      tooltip: "Comment links",
-      menu: () => import("./toolbar/commentLinksMenu"),
+      id: "export",
+      icon: "download",
+      tooltip: "Export",
+      menu: () => import("./toolbar/exportMenu"),
     }),
-    // a section in the Overview, Products and Lists Customize panels
+    // a section in the Overview, Products and Lists Customize panels: sets up the column below
     projectTableCustomizeSection({
-      id: "comments",
-      title: "Comments",
-      icon: "chat",
-      component: () => import("./customize/CommentsCustomizeSection"),
+      id: "due_dates",
+      title: "Due dates",
+      icon: "event",
+      component: () => import("./customize/DueDatesSection"),
     }),
-    // number of comments, in the Overview, Products and Lists tables
+    // days until a task is due, in the Overview and Lists tables (Products has no tasks)
     tableColumn({
-      id: "comment_count",
-      label: "Comments",
-      icon: "chat",
-      entityTypes: ["folder", "task", "version"],
-      width: 110,
-      cell: () => import("./table/CommentCountCell"),
-      useData: () => import("./table/useCommentCounts"),
+      id: "due_in",
+      label: "Due in",
+      icon: "event",
+      entityTypes: ["task"],
+      pages: ["overview", "lists"],
+      width: 120,
+      cell: () => import("./table/DueInCell"),
+      useData: () => import("./table/useDueIn"),
     }),
   ],
 });

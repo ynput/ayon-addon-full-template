@@ -1,6 +1,6 @@
 # AYON Addon Full Template
 
-This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It puts a Comments feed into every slot of the AYON web application (pages, the header, the details panel, menus, table columns, toolbars) through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
+This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It is a small production tracking toolkit with a contribution in every slot of the AYON web application, each one something a producer or artist would use where it appears: Comments pages, a My deadlines button in the header, a Shot specs tab in the details panel, status summaries, due date and export actions in the menus, a status breakdown and an Export menu in the table toolbars, and a Due in column with its setting in Customize. It works through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
 
 ## Features
 
@@ -38,7 +38,7 @@ There are three ways to see the addon while you work on it:
 ```bash
 yarn dev              # inside AYON: rebuilds on every change, open the AYON URL it prints
 yarn dev:standalone   # without AYON: the dev shell at http://localhost:5174, hot reload
-yarn ayon-addon preview detailsPanel.tab comments --fixture panel-comments   # no server at all
+yarn ayon-addon preview detailsPanel.tab specs --fixture panel-shot-specs   # no server at all
 ```
 
 - **Inside AYON** (`yarn dev`): AYON loads this addon from your machine instead of the installed version (`?addonDev=addon-full-template@http://localhost:5173`, developer mode). The page reloads after each rebuild.
@@ -69,9 +69,10 @@ We use `@ynput/ayon-frontend-shared` to speed up development. This library expor
 
 This needs AYON server 1.17.0 or newer, which is set in [package.py](package.py). Older servers don't share these packages, and the addon fails there without the providers. Inside AYON your addon has no store of its own. AYON provides `@ynput/ayon-frontend-shared`, `@reduxjs/toolkit` and `react-redux` to the addon through module federation. They are listed under `shared` in [frontend/vite.config.ts](frontend/vite.config.ts). So the addon uses AYON's own instances:
 
-- **One cache.** Queries from `@ynput/ayon-frontend-shared/api` read and write AYON's cache. A query AYON has already run is not requested again. When AYON invalidates a tag, your queries that provide it refetch, and the same works the other way. The comments query provides AYON's `activity` tag, so the feed updates when someone comments in the details panel.
+- **One cache.** Queries from `@ynput/ayon-frontend-shared/api` read and write AYON's cache. A query AYON has already run is not requested again. When AYON invalidates a tag, your queries that provide it refetch, and the same works the other way. The comments query provides AYON's `activity` tag, so the feed updates when someone comments in the details panel; the production queries provide `entityActivities`, so the Due in column updates when a due date changes anywhere.
 - **Your endpoints.** `api.injectEndpoints(...)` and `api.enhanceEndpoints({ addTagTypes })` add to AYON's api. Every addon shares that api, so **prefix endpoint names with your addon name**. An endpoint whose name is already taken is skipped, and your hook then calls the existing endpoint instead (see [frontend/src/App/api/getFolders.ts](frontend/src/App/api/getFolders.ts)).
-- **Your state.** Inject slices into AYON's root reducer with `slice.injectInto(rootReducer)`, and add middleware with `addMiddleware`. Both come from `@ynput/ayon-frontend-shared/api`. The state lives in AYON's store, so it survives your page unmounting. See [frontend/src/App/client/store.ts](frontend/src/App/client/store.ts) and [commentsSlice.ts](frontend/src/App/client/commentsSlice.ts). Prefix slice names with your addon name too.
+- **Your state.** Inject slices into AYON's root reducer with `slice.injectInto(rootReducer)`, and add middleware with `addMiddleware`. Both come from `@ynput/ayon-frontend-shared/api`. The state lives in AYON's store, so it survives your page unmounting. See [frontend/src/App/client/store.ts](frontend/src/App/client/store.ts) and [productionSlice.ts](frontend/src/App/client/productionSlice.ts). Prefix slice names with your addon name too.
+- **Outside React.** Menu items' `run` and toolbar `menu` pieces are plain functions, so they can't call hooks. They import `dispatch` from `@ynput/ayon-addon` (AYON's store) and run the same endpoints: `await dispatch(api.endpoints.x.initiate(args)).unwrap()`. See [frontend/src/App/api/production.ts](frontend/src/App/api/production.ts) and [pushDueDate.ts](frontend/src/menu/pushDueDate.ts), which writes through AYON's own `updateEntities`.
 - **No providers.** AYON renders your modules inside its Redux `Provider`, `GlobalProvider` and `PowerpackProvider`. Project modules also get the project providers (`ProjectContext`, `ProjectFoldersContext`, the slicer and views). Hooks like `useGlobalContext()` and `useProjectFoldersContext()` work without wrapping them again. Only add a provider AYON doesn't render, like `AddonProjectProvider`.
 
 Share **every** entry of `@ynput/ayon-frontend-shared`. An entry you leave out is bundled into your addon with its own copy of the api and contexts. The vite config reads the entries from the installed package, so this happens automatically.
@@ -99,7 +100,7 @@ Run `yarn copy-shared` again after every shared build. `yarn install --force` go
 
 ### Custom GraphQL
 
-While the shared library covers standard REST endpoints, this template also shows how to add **custom GraphQL queries** for specialized data requirements (see [frontend/src/App/api/getComments.ts](frontend/src/App/api/getComments.ts)). We use `graphql-codegen` to automatically generate TypeScript types and RTK Query hooks for your queries.
+While the shared library covers standard REST endpoints, this template also shows how to add **custom GraphQL queries** for specialized data requirements (see [frontend/src/App/api/getComments.ts](frontend/src/App/api/getComments.ts) and [production.ts](frontend/src/App/api/production.ts)). From AYON 1.17 `attrib` is a JSON object: select it whole, or pick attributes with `attrib(names: ["endDate"])`. We use `graphql-codegen` to automatically generate TypeScript types and RTK Query hooks for your queries.
 
 #### Generating GraphQL Types
 
@@ -128,11 +129,11 @@ To make your addon visible to AYON, you must register it in two places:
 
 ### 1. Vite Configuration
 
-[frontend/vite.config.ts](frontend/vite.config.ts) uses `ayonAddon()` from `@ynput/ayon-addon-dev`. It sets up module federation the way AYON loads addons: the remote `comments`, `./manifest` exposed, and everything AYON provides shared.
+[frontend/vite.config.ts](frontend/vite.config.ts) uses `ayonAddon()` from `@ynput/ayon-addon-dev`. It sets up module federation the way AYON loads addons: the remote `production`, `./manifest` exposed, and everything AYON provides shared.
 
 ```typescript
 // vite.config.ts
-plugins: [react(), ayonAddon({ name: "comments" })],
+plugins: [react(), ayonAddon({ name: "production" })],
 ```
 
 ### 2. Server Addon Declaration
@@ -141,7 +142,7 @@ In [server/**init**.py](server/__init__.py), you must tell the AYON server about
 
 ```python
 # server/__init__.py
-frontend_modules = {"comments": ["manifest"]}
+frontend_modules = {"production": ["manifest"]}
 ```
 
-The module name (`"comments"`) must match the `name` given to `ayonAddon()`.
+The module name (`"production"`) must match the `name` given to `ayonAddon()`.

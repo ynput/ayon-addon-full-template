@@ -1,9 +1,9 @@
 import type { EntityRef } from "@ynput/ayon-addon";
 
-// A link that opens an entity in AYON with its details panel (and its comments): folders and
-// tasks on Overview, products and versions on Products.
-export const commentsLink = ({ projectName, entityType, id }: EntityRef) => {
+// The AYON URL that opens an entity with its details panel: folders and tasks on Overview,
+// products and versions on Products. Pass it to `navigate`, or prefix the origin to share it.
+export const entityPath = ({ projectName, entityType, id }: EntityRef) => {
   const page = entityType === "folder" || entityType === "task" ? "overview" : "products";
   const params = new URLSearchParams({ project: projectName, type: entityType, id });
-  return `${window.location.origin}/projects/${projectName}/${page}?${params.toString()}`;
+  return `/projects/${projectName}/${page}?${params.toString()}`;
 };

@@ -9,9 +9,6 @@ fragment Comment on ActivityNode {
   author {
     name
     active
-    attrib {
-      fullName
-      avatarUrl
-    }
+    attrib(names: ["fullName", "avatarUrl"])
   }
 }

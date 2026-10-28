@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { PageViews } from "@ynput/ayon-addon";
 import type { CommentsSort } from "@/App/components/CommentsFeed";
-import type { CommentsSortOrder } from "@/App/client/commentsSlice";
+import type { CommentsSortOrder } from "@/App/client/productionSlice";
 
 // The pages keep the feed's sort order in their view (`viewType` in src/manifest.ts): AYON shows
 // the views menu, so a user can save "oldest first" as a view and share it. The settings' shape

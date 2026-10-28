@@ -1,0 +1,22 @@
+# Shots with their frame ranges: those under the given folders (and the folders themselves),
+# or every shot of the project when folderIds is null.
+query GetShots($projectName: String!, $folderIds: [String!]) {
+  project(name: $projectName) {
+    folders(
+      ids: $folderIds
+      includeFolderChildren: true
+      folderTypes: ["Shot"]
+      first: 10000
+    ) {
+      edges {
+        node {
+          id
+          name
+          label
+          path
+          attrib
+        }
+      }
+    }
+  }
+}

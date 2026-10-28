@@ -3,10 +3,10 @@ import react from "@vitejs/plugin-react";
 import { ayonAddon } from "@ynput/ayon-addon-dev/vite";
 import path from "path";
 
-// ayonAddon() sets up module federation the way AYON loads addons: the remote "comments" (the
+// ayonAddon() sets up module federation the way AYON loads addons: the remote "production" (the
 // key in frontend_modules, server/__init__.py) exposing ./manifest, every package AYON provides
 // shared, and @ynput/ayon-addon with import: false (always AYON's copy, never bundled).
-// The build goes to dist/modules/comments. `yarn dev` (ayon-addon dev) serves it for AYON's
+// The build goes to dist/modules/production. `yarn dev` (ayon-addon dev) serves it for AYON's
 // dev override.
 export default defineConfig({
   resolve: {
@@ -14,5 +14,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  plugins: [react(), ayonAddon({ name: "comments" })],
+  plugins: [react(), ayonAddon({ name: "production" })],
 });

@@ -1,0 +1,47 @@
+# The statuses of what a project table shows: tasks (Overview), the latest version of each
+# product (Products) or the items of a list (Lists). The booleans pick one, listId is only read
+# for lists.
+query GetStatuses(
+  $projectName: String!
+  $tasks: Boolean!
+  $versions: Boolean!
+  $list: Boolean!
+  $listId: String!
+) {
+  project(name: $projectName) {
+    tasks(first: 10000) @include(if: $tasks) {
+      edges {
+        node {
+          status
+        }
+      }
+    }
+    versions(latestOnly: true, first: 10000) @include(if: $versions) {
+      edges {
+        node {
+          status
+        }
+      }
+    }
+    entityList(id: $listId) @include(if: $list) {
+      items(first: 10000) {
+        edges {
+          node {
+            ... on FolderNode {
+              status
+            }
+            ... on TaskNode {
+              status
+            }
+            ... on ProductNode {
+              status
+            }
+            ... on VersionNode {
+              status
+            }
+          }
+        }
+      }
+    }
+  }
+}
