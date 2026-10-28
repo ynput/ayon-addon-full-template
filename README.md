@@ -36,13 +36,13 @@ yarn install
 There are three ways to see the addon while you work on it:
 
 ```bash
-yarn dev              # inside AYON: rebuilds on every change, open the AYON URL it prints
-yarn dev:standalone   # without AYON: the dev shell at http://localhost:5174, hot reload
+yarn dev              # without AYON: the dev shell at http://localhost:5174, hot reload
+yarn dev:ayon         # inside AYON: rebuilds on every change, open the AYON URL it prints
 yarn ayon-addon preview detailsPanel.tab specs --fixture panel-shot-specs   # no server at all
 ```
 
-- **Inside AYON** (`yarn dev`): AYON loads this addon from your machine instead of the installed version (`?addonDev=addon-full-template@http://localhost:5173`, developer mode). The page reloads after each rebuild.
-- **Dev shell** (`yarn dev:standalone`): the addon's contributions in AYON's own details panel, slicer and Customize panel, with stand-ins for the header, page tabs and tables, and a developer panel to pick the contribution, the project and the entities. It signs in with the AYON login, or with `AYON_API_KEY`.
+- **Inside AYON** (`yarn dev:ayon`): AYON loads this addon from your machine instead of the installed version (`?addonDev=addon-full-template@http://localhost:5173`, developer mode). The page reloads after each rebuild.
+- **Dev shell** (`yarn dev`): the addon's contributions in AYON's own details panel, slicer and Customize panel, with stand-ins for the header, page tabs and tables, and a developer panel to pick the contribution, the project and the entities. It signs in with the AYON login, or with `AYON_API_KEY`.
 - **Preview**: one contribution with the data in [frontend/dev/fixtures](frontend/dev/fixtures), no server needed.
 
 `yarn ayon-addon open <slot> <id>` and `yarn ayon-addon preview` render one contribution in a headless browser and report errors, toasts and the context it got (`--json`, `--screenshot`), for scripts and coding agents. `yarn ayon-addon check` checks the manifest. All commands: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`.
@@ -77,7 +77,7 @@ This needs AYON server 1.17.0 or newer, which is set in [package.py](package.py)
 
 Share **every** entry of `@ynput/ayon-frontend-shared`. An entry you leave out is bundled into your addon with its own copy of the api and contexts. The vite config reads the entries from the installed package, so this happens automatically.
 
-Without AYON (`yarn dev:standalone`) the dev shell from `@ynput/ayon-addon-dev` creates a store with `createStandaloneStore()` and renders AYON's providers around the addon, so the addon itself has no dev-only code.
+Without AYON (`yarn dev`) the dev shell from `@ynput/ayon-addon-dev` creates a store with `createStandaloneStore()` and renders AYON's providers around the addon, so the addon itself has no dev-only code.
 
 Your addon uses the shared library version that the AYON server it runs on ships. If you use something new from `@ynput/ayon-frontend-shared`, raise your addon's minimum AYON version too.
 

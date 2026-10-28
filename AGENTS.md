@@ -115,8 +115,8 @@ page only decides where they go.
 
 | | |
 |---|---|
-| `yarn dev` | Inside AYON: watched build served for AYON's dev override; open the URL it prints (developer mode) |
-| `yarn dev:standalone` | The dev shell at http://localhost:5174: AYON's details panel, slicer and Customize panel around the contributions, stand-ins (marked *approximated*) for the header, page tabs, project list and table; a developer panel to pick the contribution, project and entities. Hot reload |
+| `yarn dev` | The dev shell at http://localhost:5174: AYON's details panel, slicer and Customize panel around the contributions, stand-ins (marked *approximated*) for the header, page tabs, project list and table; a developer panel to pick the contribution, project and entities. Hot reload |
+| `yarn dev:ayon` | Inside AYON: watched build served for AYON's dev override; open the URL it prints (developer mode) |
 | `yarn ayon-addon open <slot> <id> --project <p> [--entities task:<id>] [--run] [--screenshot f] --json` | One contribution in the dev shell, headless, against the server: errors, toasts, its context, the clipboard after `--run` |
 | `yarn ayon-addon preview <slot> <id> --fixture <name> --json` | The same from `frontend/dev/fixtures/<name>.json`, no server |
 | `yarn ayon-addon check --json` | The manifest as AYON reads it, the pieces' files, the types |
