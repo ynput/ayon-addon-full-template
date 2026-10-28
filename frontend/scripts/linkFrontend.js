@@ -25,6 +25,12 @@ for (const pkg of ["addon", "addon-dev"]) {
 }
 
 const link = path.resolve(".ayon-frontend");
-fs.rmSync(link, { force: true, recursive: false });
+const existing = fs.lstatSync(link, { throwIfNoEntry: false });
+// a folder here is probably a checkout with work in it: move it aside, don't delete it
+if (existing && !existing.isSymbolicLink()) {
+  console.error(`${link} is a folder, not a link. Move it aside (mv .ayon-frontend .ayon-frontend.bak) and run this again.`);
+  process.exit(1);
+}
+fs.rmSync(link, { force: true });
 fs.symlinkSync(frontendDir, link, "dir");
 console.log(`.ayon-frontend -> ${frontendDir}. Now run: yarn install`);
