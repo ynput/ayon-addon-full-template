@@ -42,7 +42,7 @@ yarn ayon-addon preview detailsPanel.tab specs --fixture panel-shot-specs   # no
 ```
 
 - **Inside AYON** (`yarn dev:ayon`): AYON loads this addon from your machine instead of the installed version (`?addonDev=addon-full-template@http://localhost:5173`, developer mode). The page reloads after each rebuild.
-- **Dev shell** (`yarn dev`): the addon's contributions in AYON's own details panel, slicer and Customize panel, with stand-ins for the header, page tabs and tables, and a developer panel to pick the contribution, the project and the entities. It signs in with the AYON login, or with `AYON_API_KEY`.
+- **Dev shell** (`yarn dev`): the addon's contributions in AYON's own details panel, slicer and Customize panel, with stand-ins for the header and tables, and a developer panel to pick the contribution and its context (project, entities). It signs in with the AYON login, or with `AYON_API_KEY`.
 - **Preview**: one contribution with the data in [frontend/dev/fixtures](frontend/dev/fixtures), no server needed.
 
 `yarn ayon-addon open <slot> <id>` and `yarn ayon-addon preview` render one contribution in a headless browser and report errors, toasts and the context it got (`--json`, `--screenshot`), for scripts and coding agents. `yarn ayon-addon check` checks the manifest. All commands: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`.
