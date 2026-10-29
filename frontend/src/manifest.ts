@@ -122,7 +122,9 @@ export default defineAddon({
       icon: "event",
       component: () => import("./customize/DueDatesSection"),
     }),
-    // days until a task is due, in the Overview and Lists tables (Products has no tasks)
+    // days until a task is due, in the Overview and Lists tables (Products has no tasks). In the
+    // Add column menu it sits in a submenu named after the addon; `menu: "Scheduling"` would put
+    // it in a submenu of that name (columns giving the same name share one), `menu: false` at the top
     tableColumn({
       id: "due_in",
       label: "Due in",
