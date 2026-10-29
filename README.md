@@ -1,6 +1,6 @@
 # AYON Addon Full Template
 
-This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It is a small production tracking toolkit with a contribution in every slot of the AYON web application, each one something a producer or artist would use where it appears: Comments pages, a My deadlines button in the header, a Shot specs tab in the details panel, status summaries, due date and export actions in the menus, a status breakdown and an Export menu in the table toolbars, and a Due in column with its setting in Customize. It works through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
+This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It is a small production tracking toolkit with a contribution in every slot of the AYON web application, each one something a producer or artist would use where it appears: Comments pages, a My deadlines button in the header, a Shot specs tab in the details panel, status summaries, due date and export actions in the menus, a status breakdown and an Export menu in the table toolbars, a Due in column with its setting in Customize, and keyboard shortcuts on table cells. It works through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
 
 ## Features
 
@@ -120,6 +120,15 @@ While the shared library covers standard REST endpoints, this template also show
    ```
 
 This will update [frontend/src/App/api/generated/graphql.ts](frontend/src/App/api/generated/graphql.ts) with new hooks like `useGetCommentsQuery` which you can then import and use in your components.
+
+### The addon's own REST endpoints
+
+When the addon's server adds endpoints, `yarn generate-rest` (`ayon-addon generate-rest`) generates their RTK Query endpoints and types from the addon's OpenAPI schema. Install the addon in this version on your server first, then run it in `frontend/`:
+
+- `src/api/generated/<name>.ts` holds the endpoints, injected into AYON's api and prefixed with the addon name. Never edit it.
+- `src/api/<name>.ts` is created on the first run. Add cache tags and optimistic updates there; it exports the hooks. Later runs offer to export the hooks of new endpoints.
+
+POST endpoints that only read go in `ayonAddon({ rest: { queries: [...] } })` in `vite.config.ts`. Details: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`.
 
 ---
 

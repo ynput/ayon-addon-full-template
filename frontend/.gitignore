@@ -27,3 +27,6 @@ dist-ssr
 
 # ayon-frontend checkout the unpublished SDK packages are linked from (yarn link-frontend)
 .ayon-frontend
+
+# yarn generate-rest: the downloaded schema
+gen/openapi.json
