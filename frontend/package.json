@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev --standalone",
-    "dev:ayon": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev",
+    "dev": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev",
+    "dev:ayon": "node ./node_modules/@ynput/ayon-addon-dev/dist/cli.js dev --ayon",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "generate-token": "node --env-file=.env.local ./gen/getAuth.js",
