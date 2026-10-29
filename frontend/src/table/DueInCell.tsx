@@ -4,7 +4,7 @@ import { selectDueWarningDays } from "@/App/client/store";
 import { formatDueIn } from "@/App/utils/dates";
 import { throwIfRequested } from "@/testing";
 
-// A cell of the Due in column: `value` is what useDueIn returned for its task, days until it is
+// A cell of the Due in column: `value` is what fetchDueIn returned for its task, days until it is
 // due. Red when late, amber within the warning set in the Customize panel (DueDatesSection).
 // AYON draws the cell box (padding, selection) and its right-click menu; Copy copies `value`.
 const DueInCell = ({ value }: SlotProps<"tableColumn">) => {

@@ -131,7 +131,7 @@ export default defineAddon({
       pages: ["overview", "lists"],
       width: 120,
       cell: () => import("./table/DueInCell"),
-      useData: () => import("./table/useDueIn"),
+      fetchValues: () => import("./table/fetchDueIn"),
     }),
     // keyboard shortcuts on table cells: Shift+Ctrl/⌘+C copies the status summary of the
     // selected rows in the project tables (the same function as the menu items above). `mod` is
