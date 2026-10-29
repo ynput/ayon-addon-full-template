@@ -14,6 +14,7 @@ import {
   slicerMenuItem,
   studioPage,
   tableColumn,
+  tableShortcut,
 } from "@ynput/ayon-addon/manifest";
 
 export default defineAddon({
@@ -131,6 +132,25 @@ export default defineAddon({
       width: 120,
       cell: () => import("./table/DueInCell"),
       useData: () => import("./table/useDueIn"),
+    }),
+    // keyboard shortcuts on table cells: Shift+Ctrl/⌘+C copies the status summary of the
+    // selected rows in the project tables (the same function as the menu items above). `mod` is
+    // ⌘ on macOS and Ctrl elsewhere; AYON's own table keys (arrows, Ctrl+C, r, ...) can't be taken
+    tableShortcut({
+      id: "copy_summary",
+      label: "Copy status summary",
+      keys: "shift+mod+c",
+      tables: ["overview", "products", "lists"],
+      run: () => import("./menu/copyStatusSummary"),
+    }),
+    // and g opens a dialog with the rows' values, in every table (also the slicer, the project
+    // list and the versions panel)
+    tableShortcut({
+      id: "peek",
+      label: "Peek",
+      keys: "g",
+      dialogTitle: "Peek",
+      dialog: () => import("./table/PeekRowsDialog"),
     }),
   ],
 });
