@@ -22,9 +22,7 @@ const copyStatusSummary = async (ctx: SlotContext<"detailsPanel.menuItem" | "ent
         ctx.rows.flatMap(({ id, entityType }) =>
           entityType && ["folder", "task", "version"].includes(entityType) ? [{ id, entityType }] : [],
         )
-      : ctx.slot === "entityMenuItem"
-        ? ctx.entities
-        : ctx.selectedEntities;
+      : ctx.entities;
   if (!ctx.projectName || !entities.length) return;
   const summaries = await fetchEntitySummaries(ctx.projectName, entities);
   await navigator.clipboard.writeText(summaries.map(summaryLine).join("\n"));
