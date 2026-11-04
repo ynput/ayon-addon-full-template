@@ -94,6 +94,7 @@ attributes, tags or assignees change.
 | `projectTable.customizeSection` | `src/customize/DueDatesSection.tsx` | Due dates section in the tables' Customize panel: how many days ahead the Due in column warns, in the addon's slice of the AYON store; loads when opened |
 | `tableColumn` | `src/table/DueInCell.tsx`, `src/table/fetchDueIn.ts` | Due in column on tasks, Overview and Lists (`pages`): AYON calls `fetchValues` with the rows that come on screen, in batches, and again for a task that changed; each cell gets its `value` (days, negative when late) and reads the warning from Customize. Listed in the Add column menu under the addon's title (`menu` picks another submenu, or `false` for the top level) |
 | `table.shortcut` | `src/table/PeekRowsDialog.tsx` | Peek: `g` in any table's cell opens a dialog (`dialog`) with the values of the `rows` it acts on (the selected rows, else the focused one), the `focused` cell's field highlighted |
+| `app.service` | `src/service/RememberDueWarning.ts` | Remembers the Due dates setting across reloads: mounted once at startup, it renders nothing, puts back the saved value and saves it on change through a store listener (`useAppStore`), removed in its effect's cleanup |
 
 The menu items and the toolbar share their code: the data in `src/App/api/production.ts` (queries in
 `src/App/api/graphql`), the CSV exports in `src/App/exports.ts`.

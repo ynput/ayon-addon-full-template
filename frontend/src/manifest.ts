@@ -2,6 +2,7 @@
 // as ./manifest and listed in frontend_modules), so keep it to descriptions: every component is
 // a dynamic import that AYON loads when its slot needs it.
 import {
+  appService,
   defineAddon,
   detailsPanelMenuItem,
   detailsPanelTab,
@@ -153,6 +154,12 @@ export default defineAddon({
       keys: "g",
       dialogTitle: "Peek",
       dialog: () => import("./table/PeekRowsDialog"),
+    }),
+    // code with no UI, mounted once while AYON is open (it loads at startup, so keep it small):
+    // remembers the Due dates setting above across reloads
+    appService({
+      id: "remember_due_warning",
+      component: () => import("./service/RememberDueWarning"),
     }),
   ],
 });
