@@ -53,8 +53,6 @@ yarn ayon-addon preview detailsPanel.tab specs --fixture panel-shot-specs   # no
 
 AYON has named places in its UI, **slots**: `project.page`, `studio.page`, `header.item`, `detailsPanel.tab`, menu items, `tableColumn`, toolbar items, Customize sections and `app.service` (code with no UI). The addon lists what it puts where in one module, [frontend/src/manifest.ts](frontend/src/manifest.ts); AYON reads it at startup and loads each component when its slot needs it. Each component gets its slot's context as typed props (`SlotProps<'detailsPanel.tab'>`). See [AGENTS.md](AGENTS.md), and `node_modules/@ynput/ayon-addon/AGENTS.md` for every slot.
 
-AYON versions without slots load addons by keyword-named modules (`CommentsProject`, `CommentsStudio`, `CommentsModalApp`): that is the `main` branch of this template.
-
 ---
 
 ## Development & Data Fetching
