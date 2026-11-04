@@ -128,9 +128,3 @@ page only decides where they go.
 Sign-in: `AYON_SERVER_URL` and `AYON_API_KEY` (a service user), or the AYON login page in the dev shell. In the AYON dev workbench the local stack and its key are found on their own. Details: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`; the slots and their contexts: `node_modules/@ynput/ayon-addon/AGENTS.md`.
 
 The fixtures in `frontend/dev/fixtures` are made-up demo data: `open --save-fixture` records real server data, which must not be committed as it is.
-
-## Branches
-
-`main` keeps the old way (keyword-named modules such as `CommentsProject`, untyped props): it is
-the check that addons built that way keep working. This branch merges into `main` once an AYON
-release has the slots.
