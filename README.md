@@ -1,6 +1,6 @@
 # AYON Addon Full Template
 
-This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It is a small production tracking toolkit with a contribution in every slot of the AYON web application, each one something a producer or artist would use where it appears: Comments pages, a My deadlines button in the header, a Shot specs tab in the details panel, status summaries, due date and export actions in the menus, a status breakdown and an Export menu in the table toolbars, a Due in column with its setting in Customize, and keyboard shortcuts on table cells. It works through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
+This template provides a comprehensive starting point for creating AYON addons with a React-based frontend. It is a small production tracking toolkit with a contribution in every slot of the AYON web application, each one something a producer or artist would use where it appears: Comments pages, a My deadlines button in the header, a Shot specs tab in the details panel, status summaries, due date and export actions in the menus, a status breakdown and an Export menu in the table toolbars, a Due in column with its setting in Customize (remembered across reloads by a background service), and keyboard shortcuts on table cells. It works through `@ynput/ayon-addon`, and uses the AYON Shared Library for data and components. [AGENTS.md](AGENTS.md) lists what goes where.
 
 ## Features
 
@@ -29,7 +29,7 @@ cd frontend
 yarn install
 ```
 
-`@ynput/ayon-addon` and `@ynput/ayon-addon-dev` aren't published yet: link them from an ayon-frontend checkout first, see [Developing without a published SDK](AGENTS.md#developing-without-a-published-sdk).
+The addon SDK comes from npm: `@ynput/ayon-addon` (the slots) and `@ynput/ayon-addon-dev` (the build, the dev shell and the `ayon-addon` CLI).
 
 ### 3. Development
 
@@ -51,7 +51,7 @@ yarn ayon-addon preview detailsPanel.tab specs --fixture panel-shot-specs   # no
 
 ## Where the frontend goes: slots
 
-AYON has named places in its UI, **slots**: `project.page`, `studio.page`, `header.item`, `detailsPanel.tab`, menu items, `tableColumn`, toolbar items and Customize sections. The addon lists what it puts where in one module, [frontend/src/manifest.ts](frontend/src/manifest.ts); AYON reads it at startup and loads each component when its slot needs it. Each component gets its slot's context as typed props (`SlotProps<'detailsPanel.tab'>`). See [AGENTS.md](AGENTS.md), and `node_modules/@ynput/ayon-addon/AGENTS.md` for every slot.
+AYON has named places in its UI, **slots**: `project.page`, `studio.page`, `header.item`, `detailsPanel.tab`, menu items, `tableColumn`, toolbar items, Customize sections and `app.service` (code with no UI). The addon lists what it puts where in one module, [frontend/src/manifest.ts](frontend/src/manifest.ts); AYON reads it at startup and loads each component when its slot needs it. Each component gets its slot's context as typed props (`SlotProps<'detailsPanel.tab'>`). See [AGENTS.md](AGENTS.md), and `node_modules/@ynput/ayon-addon/AGENTS.md` for every slot.
 
 AYON versions without slots load addons by keyword-named modules (`CommentsProject`, `CommentsStudio`, `CommentsModalApp`): that is the `main` branch of this template.
 
