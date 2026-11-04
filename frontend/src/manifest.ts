@@ -35,8 +35,8 @@ export default defineAddon({
       component: () => import("./pages/CommentsStudioPage"),
     }),
     // a header button before the inbox, opening a dialog with my tasks due this week. A header or
-    // toolbar item sets one action: dialog, menu, run, to (navigate) or component (its own JSX
-    // instead of AYON's button)
+    // toolbar item sets one action: dialog, menu, popover, run, to (navigate) or component (its own
+    // JSX instead of AYON's button; with popover, the button that opens it)
     headerItem({
       id: "my_deadlines",
       label: "My deadlines",

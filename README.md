@@ -29,7 +29,7 @@ cd frontend
 yarn install
 ```
 
-`@ynput/ayon-addon` and `@ynput/ayon-addon-dev` aren't published yet: link them from an ayon-frontend checkout first, see [Developing without a published SDK](AGENTS.md#developing-without-a-published-sdk).
+The addon SDK comes from npm: `@ynput/ayon-addon` (the slots) and `@ynput/ayon-addon-dev` (the build, the dev shell and the `ayon-addon` CLI).
 
 ### 3. Development
 
