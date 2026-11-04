@@ -59,8 +59,8 @@ const { projectName, slicer } = useSlot("project.page");
 `useSlot` throws when the component is rendered in another slot, naming both. The context only
 holds what depends on where you are (the project, the slicer selection, the selected projects).
 Everything else is a normal import from `@ynput/ayon-addon`: `useUser`, `useNavigate` and the other
-router hooks, `toast`, `dispatch`, the layout components. Don't import `react-router-dom` or
-`react-toastify` directly; data comes from `@ynput/ayon-frontend-shared/api`.
+router hooks, `toast`, `dispatch`, the layout components. Don't import `react-router-dom`,
+`react-toastify` or `use-query-params` directly; data comes from `@ynput/ayon-frontend-shared/api`.
 
 ## Data outside React: `dispatch`
 
@@ -86,13 +86,15 @@ attributes, tags or assignees change.
 | `studio.page` | `src/pages/CommentsStudioPage.tsx` | Comments tab of the dashboard (`access: "manager"`): `StudioPageLayout` with AYON's `ProjectList`, filtered by `selectedProjects`; the sort order is saved in the page's view, as on the project page |
 | `header.item` | `src/header/MyDeadlinesDialog.tsx` | My deadlines, right of the header (`dialog`): the user's open tasks due within a week or late, from AYON's dashboard query; only the open project's when `projectName` is set; a click `close`s and `navigate`s to the task |
 | `detailsPanel.tab` | `src/panel/ShotSpecsTab.tsx` | Shot specs tab for folders, tasks and versions: frame range, handles, duration (frames and timecode), fps, resolution of the open `entities`, one column each; values set on the entity itself are highlighted, a version's that differ from its shot flagged |
-| `detailsPanel.menuItem`, `entityMenuItem` | `src/menu/copyStatusSummary.ts` | "Copy status summary" (`sh010 / comp · Compositing · In progress · ana · due 3 Nov`) as a button in the details panel header (`pinned`) and at the top of the tables' right-click menu (`position: "top"`); one `run` function for both, told apart by `ctx.slot` |
+| `detailsPanel.menuItem`, `entityMenuItem`, `table.shortcut` | `src/menu/copyStatusSummary.ts` | "Copy status summary" (`sh010 / comp · Compositing · In progress · ana · due 3 Nov`) as a button in the details panel header (`pinned`), at the top of the tables' right-click menu (`position: "top"`) and on Shift+Ctrl/⌘+C in the project tables (`keys: "shift+mod+c"`, `tables`); one `run` function for all three, told apart by `ctx.slot` |
 | `entityMenuItem` | `src/menu/pushDueDate.ts` | "Push due date by a day" for selected tasks (`entityTypes: ["task"]`): the write example, through AYON's `updateEntities` |
 | `projectList.menuItem` | `src/menu/exportTaskReport.ts` | "Export task report (CSV)" for the selected projects, in the project list's right-click menu and dropdown (`in`) |
 | `slicer.menuItem` | `src/menu/copyShotList.ts` | "Copy shot list": the shots under the selected folders with their frame ranges, tab separated for a spreadsheet; hierarchy only (`sliceTypes`) |
 | `projectTable.toolbarItem` | `src/toolbar/StatusBreakdownDialog.tsx`, `src/toolbar/exportMenu.ts` | Statuses button (`dialog`): how many tasks (Overview), latest versions (Products) or list items (Lists, `list`) are in each status; and an Export button (`menu`: the items, AYON shows them in its menu) with the task report and the shot list. AYON draws both before Customize |
 | `projectTable.customizeSection` | `src/customize/DueDatesSection.tsx` | Due dates section in the tables' Customize panel: how many days ahead the Due in column warns, in the addon's slice of the AYON store; loads when opened |
-| `tableColumn` | `src/table/DueInCell.tsx`, `src/table/useDueIn.ts` | Due in column on tasks, Overview and Lists (`pages`): `useData` runs one query per table for the rows on screen, each cell gets its `value` (days, negative when late) and reads the warning from Customize |
+| `tableColumn` | `src/table/DueInCell.tsx`, `src/table/fetchDueIn.ts` | Due in column on tasks, Overview and Lists (`pages`): AYON calls `fetchValues` with the rows that come on screen, in batches, and again for a task that changed; each cell gets its `value` (days, negative when late) and reads the warning from Customize. Listed in the Add column menu under the addon's title (`menu` picks another submenu, or `false` for the top level) |
+| `table.shortcut` | `src/table/PeekRowsDialog.tsx` | Peek: `g` in any table's cell opens a dialog (`dialog`) with the values of the `rows` it acts on (the selected rows, else the focused one), the `focused` cell's field highlighted |
+| `app.service` | `src/service/RememberDueWarning.ts` | Remembers the Due dates setting across reloads: mounted once at startup, it renders nothing, puts back the saved value and saves it on change through a store listener (`useAppStore`), removed in its effect's cleanup |
 
 The menu items and the toolbar share their code: the data in `src/App/api/production.ts` (queries in
 `src/App/api/graphql`), the CSV exports in `src/App/exports.ts`.
@@ -121,28 +123,13 @@ page only decides where they go.
 | `yarn ayon-addon preview <slot> <id> --fixture <name> --json` | The same from `frontend/dev/fixtures/<name>.json`, no server |
 | `yarn ayon-addon check --json` | The manifest as AYON reads it, the pieces' files, the types |
 | `yarn ayon-addon slots` | The slots of the installed `@ynput/ayon-addon` |
+| `yarn generate-rest` | The addon's server endpoints as RTK Query endpoints: `src/api/generated/<name>.ts` (never edit it), enhanced and their hooks exported in `src/api/<name>.ts` |
 
 Sign-in: `AYON_SERVER_URL` and `AYON_API_KEY` (a service user), or the AYON login page in the dev shell. In the AYON dev workbench the local stack and its key are found on their own. Details: `node_modules/@ynput/ayon-addon-dev/AGENTS.md`; the slots and their contexts: `node_modules/@ynput/ayon-addon/AGENTS.md`.
 
 The fixtures in `frontend/dev/fixtures` are made-up demo data: `open --save-fixture` records real server data, which must not be committed as it is.
 
-## Developing without a published SDK
-
-`@ynput/ayon-addon` is not on npm yet. `frontend/package.json` links it from an ayon-frontend
-checkout through `frontend/.ayon-frontend` (gitignored):
-
-```bash
-# in ayon-frontend
-yarn build:addon
-# in frontend/
-yarn link-frontend <path-to-ayon-frontend>
-yarn install
-yarn build
-```
-
-The dev shell also needs the ayon-frontend checkout's `@ynput/ayon-frontend-shared` (the
-published 0.7.0 has no login page and no slots): `yarn build:shared` there, then
-`yarn copy-shared .ayon-frontend` here. `yarn install --force` goes back to the published one.
+## Branches
 
 `main` keeps the old way (keyword-named modules such as `CommentsProject`, untyped props): it is
 the check that addons built that way keep working. This branch merges into `main` once an AYON

@@ -2,6 +2,7 @@
 // as ./manifest and listed in frontend_modules), so keep it to descriptions: every component is
 // a dynamic import that AYON loads when its slot needs it.
 import {
+  appService,
   defineAddon,
   detailsPanelMenuItem,
   detailsPanelTab,
@@ -14,6 +15,7 @@ import {
   slicerMenuItem,
   studioPage,
   tableColumn,
+  tableShortcut,
 } from "@ynput/ayon-addon/manifest";
 
 export default defineAddon({
@@ -34,8 +36,8 @@ export default defineAddon({
       component: () => import("./pages/CommentsStudioPage"),
     }),
     // a header button before the inbox, opening a dialog with my tasks due this week. A header or
-    // toolbar item sets one action: dialog, menu, run, to (navigate) or component (its own JSX
-    // instead of AYON's button)
+    // toolbar item sets one action: dialog, menu, popover, run, to (navigate) or component (its own
+    // JSX instead of AYON's button; with popover, the button that opens it)
     headerItem({
       id: "my_deadlines",
       label: "My deadlines",
@@ -121,7 +123,9 @@ export default defineAddon({
       icon: "event",
       component: () => import("./customize/DueDatesSection"),
     }),
-    // days until a task is due, in the Overview and Lists tables (Products has no tasks)
+    // days until a task is due, in the Overview and Lists tables (Products has no tasks). In the
+    // Add column menu it sits in a submenu named after the addon; `menu: "Scheduling"` would put
+    // it in a submenu of that name (columns giving the same name share one), `menu: false` at the top
     tableColumn({
       id: "due_in",
       label: "Due in",
@@ -130,7 +134,32 @@ export default defineAddon({
       pages: ["overview", "lists"],
       width: 120,
       cell: () => import("./table/DueInCell"),
-      useData: () => import("./table/useDueIn"),
+      fetchValues: () => import("./table/fetchDueIn"),
+    }),
+    // keyboard shortcuts on table cells: Shift+Ctrl/⌘+C copies the status summary of the
+    // selected rows in the project tables (the same function as the menu items above). `mod` is
+    // ⌘ on macOS and Ctrl elsewhere; AYON's own table keys (arrows, Ctrl+C, r, ...) can't be taken
+    tableShortcut({
+      id: "copy_summary",
+      label: "Copy status summary",
+      keys: "shift+mod+c",
+      tables: ["overview", "products", "lists"],
+      run: () => import("./menu/copyStatusSummary"),
+    }),
+    // and g opens a dialog with the rows' values, in every table (also the slicer, the project
+    // list and the versions panel)
+    tableShortcut({
+      id: "peek",
+      label: "Peek",
+      keys: "g",
+      dialogTitle: "Peek",
+      dialog: () => import("./table/PeekRowsDialog"),
+    }),
+    // code with no UI, mounted once while AYON is open (it loads at startup, so keep it small):
+    // remembers the Due dates setting above across reloads
+    appService({
+      id: "remember_due_warning",
+      component: () => import("./service/RememberDueWarning"),
     }),
   ],
 });

@@ -11,8 +11,8 @@ import {
 //
 // AYON invalidates the `entityActivities` tag of an entity when its status, attributes, tags or
 // assignees change, wherever that happens (the tables, the details panel, this addon). Providing
-// it per entity makes these queries refetch after any edit, e.g. the Due in column after the due
-// date changes.
+// it per entity makes these queries refetch after any edit, e.g. the Shot specs tab after a
+// frame range changes.
 const entityTags = (ids: string | string[]) =>
   [ids].flat().map((id) => ({ type: "entityActivities" as const, id }));
 
